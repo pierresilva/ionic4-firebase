@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<!-- No padding -->
 <ion-content>
 
+  <div class="login-page">
+
+    <div class="login-form">
+
+      <form [formGroup]="loginForm">
+        <div class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+          <p class="">Please enter a valid email.</p>
+        </div>
+
+        <div class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
+          <p class="">Your password needs more than 6 characters.</p>
+        </div>        
+            
+        <ion-item class="input" lines="none" margin-top>
+          <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+        </ion-item>
+
+        <ion-item  class="input" lines="none" margin-top>
+          <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+        </ion-item>        
+      </form>
+     
+    </div>
+
+    <div class="setimg">
+      <img src="assets/images/login.jpg">
+    </div>
+  
+  </div>  
 </ion-content>

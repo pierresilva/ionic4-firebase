@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { GuardService } from '../../services/guard.service';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../home/home.module#HomePageModule',
-            // canActivate: [AuthGuard]
+            canActivate: [GuardService]
           }
         ]
       },
@@ -24,7 +25,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../favourite/favourite.module#FavouritePageModule',
-            // canActivate: [AuthGuard]
+            canActivate: [GuardService]
           }
         ]
       },
@@ -33,7 +34,7 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',
-        // canActivate: [AuthGuard]
+        canActivate: [GuardService]
       }
     ]
   },
@@ -42,13 +43,13 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full',
-    // canActivate: [AuthGuard]
+    canActivate: [GuardService]
   },
   {
     path: 'crud',
     redirectTo: '/tabs/crud',
     pathMatch: 'full',
-    // canActivate: [AuthGuard]
+    canActivate: [GuardService]
   }
 ];
 /*

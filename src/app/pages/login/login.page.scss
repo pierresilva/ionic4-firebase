@@ -1,0 +1,50 @@
+.login-page{
+	height: 100%;
+	width: 100%;
+    background-color: rgb(255, 0, 21);
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+
+	.login-form{
+		text-align: center;
+		position: relative;
+		z-index: 100;
+		// display: flex;
+		// flex-direction: column;
+		// height: 100%;
+
+		form{
+
+			padding-left: 50px !important;
+			padding-right: 50px !important;
+
+			.input{
+				background: #fff;
+				border-radius: 15px;
+				overflow: hidden;
+				color: rgb(136, 36, 230);
+			}
+		}
+
+	}
+	
+	.setimg{
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		img{
+			width: 100%;
+		}
+	}    
+
+}
