@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  loginUser(): void {
+  loginFirebase(): void {
     if (!this.loginForm.valid) {
       console.log('Login Page is not valid:', this.loginForm.value);
     } else {

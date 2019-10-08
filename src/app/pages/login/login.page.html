@@ -1,33 +1,40 @@
-<!-- No padding -->
 <ion-content>
 
-  <div class="login-page">
+  <div class="logo">
+    <img src="assets/images/buzul.png">
+    <h2>Buzul</h2>
+  </div>
 
-    <div class="login-form">
+  <br>
 
-      <form [formGroup]="loginForm">
-        <div class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
-          <p class="">Please enter a valid email.</p>
-        </div>
+  <form [formGroup]="loginForm" class="form" (submit)="loginFirebase()" novalidate>
 
-        <div class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
-          <p class="">Your password needs more than 6 characters.</p>
-        </div>        
-            
-        <ion-item class="input" lines="none" margin-top>
-          <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
-        </ion-item>
-
-        <ion-item  class="input" lines="none" margin-top>
-          <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
-        </ion-item>        
-      </form>
-     
+    <ion-item lines="none" class="item">
+      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+        
+    <div class="" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+      <p class="alert">Your email is not valid!</p>
     </div>
 
-    <div class="setimg">
-      <img src="assets/images/login.jpg">
+    <ion-item lines="none" margin-top class="item">
+      <ion-input formControlName="password" type="password" placeholder="Enter Password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+
+    <div class="" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
+      <p class="alert">Please enter more than 6 characters.</p>
     </div>
-  
+
+    <br>
+
+    <ion-button expand="block" fill="solid" shape="round" color="primary" type="submit">Login</ion-button>
+  </form>  
+
+  <div class="">
+    <ion-button fill="clear" size="small" class="router" (click)="goRegisterPage()">Register</ion-button>    
+  </div>
+  <div class="">  
+    <ion-button fill="clear" size="small" class="router" (click)="goForgotPage()">Forgot password</ion-button>
   </div>  
+
 </ion-content>

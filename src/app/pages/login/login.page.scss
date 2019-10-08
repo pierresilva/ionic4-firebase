@@ -1,50 +1,32 @@
-.login-page{
-	height: 100%;
-	width: 100%;
-    background-color: rgb(255, 0, 21);
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
+ion-content {
+	--overflow: hidden;
+	--background: none;
+	// background-color: crimson; //red color for position control
+	background-image: url("../../../assets/images/login.jpg");
+	background-size: cover;
+	text-align: center;
 
-	.login-form{
-		text-align: center;
-		position: relative;
-		z-index: 100;
-		// display: flex;
-		// flex-direction: column;
-		// height: 100%;
-
-		form{
-
-			padding-left: 50px !important;
-			padding-right: 50px !important;
-
-			.input{
-				background: #fff;
-				border-radius: 15px;
-				overflow: hidden;
-				color: rgb(136, 36, 230);
-			}
-		}
-
+	img {
+		// background-color: rgb(255, 38, 0); //control
+		margin-top: 70px;
+		width: 156px;
 	}
-	
-	.setimg{
-		position: absolute;
-		z-index: 10;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-		img{
-			width: 100%;
-		}
-	}    
 
+	h2 {
+		text-transform: uppercase;
+	}
+
+	.form {
+		// background-color: rgb(240, 205, 11); //control
+		padding-left: 40px;
+		padding-right: 40px;
+		.item{
+			border-radius: 40px;
+			--background: rgb(198, 248, 236);
+		}
+	}
+
+	.router {
+		color: blue;
+	}
 }
