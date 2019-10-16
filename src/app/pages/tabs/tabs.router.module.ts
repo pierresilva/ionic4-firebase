@@ -24,7 +24,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../favourite/favourite.module#FavouritePageModule',
+            loadChildren: '../crud/crud.module#CrudPageModule',
             canActivate: [GuardService]
           }
         ]

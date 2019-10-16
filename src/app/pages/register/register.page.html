@@ -1,9 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+
+  <div class="logo">
+    <img src="assets/images/buzul.png">
+    <h2>Buzul</h2>
+  </div>
+
+  <br>
+
+  <form [formGroup]="registerForm" class="form" (submit)="registerFirebase()" novalidate>
+
+    <ion-item lines="none" class="item">
+      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!registerForm.controls.email.valid && registerForm.controls.email.dirty"></ion-input>
+    </ion-item>
+        
+    <div class="" *ngIf="!registerForm.controls.email.valid  && registerForm.controls.email.dirty">
+      <p class="alert">Your email is not valid!</p>
+    </div>
+
+    <ion-item lines="none" margin-top class="item">
+      <ion-input formControlName="password" type="password" placeholder="Enter Password" [class.invalid]="!registerForm.controls.password.valid && registerForm.controls.password.dirty"></ion-input>
+    </ion-item>
+
+    <div class="" *ngIf="!registerForm.controls.password.valid && registerForm.controls.password.dirty">
+      <p class="alert">Please enter more than 6 characters.</p>
+    </div>
+
+    <br>
+
+    <ion-button expand="block" fill="solid" shape="round" color="primary" type="submit" [disabled]="!registerForm.valid">Register</ion-button>
+  </form>  
+
+  <div class="">
+    <ion-button fill="clear" size="small" class="router" (click)="goLoginPage()">Login</ion-button>    
+  </div>
 
 </ion-content>

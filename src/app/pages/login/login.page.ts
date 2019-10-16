@@ -49,22 +49,23 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  loginFirebase(): void {
+  async loginFirebase(): Promise<void> {
     if (!this.loginForm.valid) {
       console.log('Login Page is not valid:', this.loginForm.value);
     } else {
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
+      const email: string = this.loginForm.value.email;
+      const password: string = this.loginForm.value.password;
 
-      this.authService.login(email, password).then( () => {
-        this.loading.dismiss().then(() => {
-          this.router.navigate(['tabs']);
-        });
-      },
-      error => {
-        this.loading.dismiss().then(async () => {
-          this.ctrlAlert();
-        });
+      this.authService.login(email, password)
+        .then(() => {
+          this.loading.dismiss().then(() => {
+            this.router.navigate(['tabs']);
+          });
+        },
+        error => {
+          this.loading.dismiss().then(() => {
+            this.ctrlAlert();
+          });
       });
       this.ctrlLoading();
     }

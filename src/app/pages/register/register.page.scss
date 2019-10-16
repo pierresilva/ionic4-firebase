@@ -1,0 +1,32 @@
+ion-content {
+	--overflow: hidden;
+	--background: none;
+	// background-color: crimson; //red color for position control
+	background-image: url("../../../assets/images/login.jpg");
+	background-size: cover;
+	text-align: center;
+
+	img {
+		// background-color: rgb(255, 38, 0); //control
+		margin-top: 70px;
+		width: 156px;
+	}
+
+	h2 {
+		text-transform: uppercase;
+	}
+
+	.form {
+		// background-color: rgb(240, 205, 11); //control
+		padding-left: 40px;
+		padding-right: 40px;
+		.item{
+			border-radius: 40px;
+			--background: rgb(198, 248, 236);
+		}
+	}
+
+	.router {
+		color: blue;
+	}
+}
