@@ -91,7 +91,7 @@ export class RegisterPage implements OnInit {
         {
           text: 'Join Now',
           handler: () => {
-          this.router.navigate(['home']);
+          this.router.navigate(['']);//home page
           console.log('Confirm Ok');
           }
         }
