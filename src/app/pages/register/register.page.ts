@@ -54,6 +54,29 @@ export class RegisterPage implements OnInit {
     await alert.present();
   }
 
+  async confirmAlert() {
+    const alert = await this.alertCtrl.create({
+      message: 'You have Successfully registered!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel:', blah);
+          }
+        },
+        {
+          text: 'Join Now',
+          handler: () => {
+          this.router.navigate(['crud']);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }    
+
   async registerFirebase(): Promise<void> {
     if (!this.registerForm.valid) {
       console.log('Register Page is not valid:', this.registerForm.value);
@@ -75,30 +98,6 @@ export class RegisterPage implements OnInit {
       this.ctrlLoading();
     }
   }
-
-  async confirmAlert() {
-    const alert = await this.alertCtrl.create({
-      message: 'You have Successfully registered!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
-          }
-        },
-        {
-          text: 'Join Now',
-          handler: () => {
-          this.router.navigate(['']);//home page
-          console.log('Confirm Ok');
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }  
 
   goLoginPage(): void {
     this.router.navigate(['login']);

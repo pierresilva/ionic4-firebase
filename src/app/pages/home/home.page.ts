@@ -10,9 +10,13 @@ import { AuthService } from '../../services/auth.service'
 })
 export class HomePage implements OnInit {
 
-  constructor(private router: Router,private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    console.log('home page control');
   }
 
   logout(): void {

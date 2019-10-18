@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import { AuthService } from '../../services/auth.service'
 
@@ -18,7 +18,6 @@ export class ForgotPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    // private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,    
     private authService: AuthService
   ) 
@@ -48,7 +47,6 @@ export class ForgotPage implements OnInit {
     });
     await alert.present();
   }  
-
 
   async resetFirebase(): Promise<void> {
     if (!this.resetForm.valid) {

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class AuthService {
   register(email: string, password: string): Promise<any> {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((newUserCredential: firebase.auth.UserCredential) => {
-        firebase.firestore().doc(`/user/${newUserCredential.user.uid}`).set({ email });
+        firebase.firestore().doc(`/userProfile/${newUserCredential.user.uid}`).set({ email });
       })
       .catch(error => {        
         var errorCode = error.code;

@@ -1,9 +1,59 @@
-<ion-header>
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
   <ion-toolbar>
-    <ion-title>crud</ion-title>
+    <ion-title text-center>CRUD</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen common-parallax [scrollEvents]="true"> 
+    <hr/>
+    <ion-list class="list" lines="none">
+
+      <!-- Personal -->
+      <ion-item>
+        <ion-label class="label">Full Name</ion-label>
+        <ion-input placeholder="Enter Full Name" [(ngModel)]="fullName" text-right class="input"></ion-input>
+      </ion-item>  
+
+      <ion-item>
+        <ion-label class="label">Gender</ion-label>
+        <ion-select placeholder="Select Gender" [(ngModel)]="gender" class="input">
+          <ion-select-option value="M">Male</ion-select-option>
+          <ion-select-option value="F">Female</ion-select-option>
+        </ion-select>
+      </ion-item>  
+   
+      <ion-item>
+        <ion-label class="label">Skills</ion-label>
+          <ion-select placeholder="Select Skills" multiple="true" cancel-text="Cancel" ok-text="Ok!" [(ngModel)]="skill" class="input">{{userProfile?.skill}}
+          <ion-select-option value="afro">Development</ion-select-option>
+          <ion-select-option value="deep">Graphic Design</ion-select-option>
+          <ion-select-option value="electro">Project Management</ion-select-option>
+        </ion-select>
+      </ion-item>   
+
+      <!-- Contact -->
+      <ion-item>
+        <ion-label class="label">Website</ion-label>
+        <ion-input placeholder="Enter Website" [(ngModel)]="website" text-right class="input"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <hr/>
+
+    <ion-list class="list" lines="none">
+      <ion-item>
+        <ion-label color="primary">Share Mail <ion-icon name="ios-mail"></ion-icon></ion-label>
+        <ion-toggle [(ngModel)]="shareMail"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+    <hr/>
+      
+    <div class="button-center">
+      <ion-button expand="block" size="small" (click)="saveProfile(fullName, userName, gender, country, city, genre, phoneCode, phoneNumber, website, twitter, facebook, instagram, description, shareCall, shareSMS, shareMail)"> 
+        Save
+      </ion-button>  
+    </div>
 
 </ion-content>
