@@ -22,14 +22,11 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router
   ) {
-    //firebase initialize
     firebase.initializeApp(environment.firebase);
     firebase.auth().onAuthStateChanged( (user: firebase.User) => {
       if(!user){
-        console.log("Init:No user is signed in.");
         this.router.navigate(['login']);
       }else{
-        console.log("Init:User is signed in");
         this.router.navigate(['tabs']);
       }
     });    

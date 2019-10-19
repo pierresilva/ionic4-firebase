@@ -8,23 +8,27 @@ import 'firebase/firestore';
 })
 export class CrudService {
 
+  private db = firebase.firestore();
   public userProfile: firebase.firestore.DocumentReference;
 
   constructor() {
-    firebase.auth().onAuthStateChanged(user => {
+    console.log("crud service start");
+    firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        this.userProfile = firebase.firestore().doc(`/userProfile/${user.uid}`);
-        console.log('user:' + this.userProfile);
+        // this.userProfile = this.db.doc(`/userProfile/${user.uid}`);
+        this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
+        console.log("userProfile data:", this.userProfile); //reference
       }
     });
   }
 
-  getProfile(): firebase.firestore.DocumentReference {
-    console.log('1');
+  getUserProfile(): firebase.firestore.DocumentReference {
+    console.log("crud service get profile");
     return this.userProfile;
   }
   
   saveProfile(fullName: string, gender: string, skill: string[], website: string, shareMail: boolean): Promise<any> {
-    return this.userProfile.update({ fullName,gender,skill,website,shareMail});
+    console.log("crud service save profile");
+    return this.userProfile.update({ fullName, gender, skill, website, shareMail});
   }  
 }

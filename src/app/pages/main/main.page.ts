@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-main',
+  templateUrl: './main.page.html',
+  styleUrls: ['./main.page.scss'],
 })
-export class HomePage implements OnInit {
+export class MainPage implements OnInit {
 
   constructor(
     private router: Router,
@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('home page control');
+    console.log('main page control');
   }
 
   logout(): void {
@@ -24,4 +24,5 @@ export class HomePage implements OnInit {
       this.router.navigate(['login']);
     });
   }
+
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AlertController } from '@ionic/angular';
 
+import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 
 @Component({
@@ -21,34 +23,45 @@ export class CrudPage implements OnInit {
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
-    private crudService: CrudService
-  ) { }
+    private authService: AuthService,
+    private crudService: CrudService    
+  ) {}
 
   ngOnInit() {
-    this.crudService.getProfile().get().then( userProfileSnapshot => {
-      console.log('TRY');
-      
-      if (userProfileSnapshot.exists) {
-        console.log("Document data:", userProfileSnapshot.data());
-      } else {
-        console.log("No such document!");
-      }
-
-      if (this.userProfile) {
-        console.log('SUCCESS');
+    console.log('Profile ngOnInit');
+    this.crudService.getUserProfile().get().then( userProfileSnapshot => {
         this.userProfile = userProfileSnapshot.data();
-        this.fullName = userProfileSnapshot.data().fullName;
-        this.gender = userProfileSnapshot.data().gender;
-        this.skill = userProfileSnapshot.data().skill;
-        this.website = userProfileSnapshot.data().website;
-        if (userProfileSnapshot.data().shareMail !== undefined) {
-          this.shareMail = userProfileSnapshot.data().shareMail;
-        }
-      } else {
-        console.log('FAILED');
-      }  
-    });
-  }
+      });
+    }  
+
+  // ngOnInit() {
+  //   console.log("CRUD PAGE NGONINIT"); 
+
+  //   this.crudService.getUserProfile().get().then( userProfileSnapshot => {
+  //     this.userProfile = userProfileSnapshot.data();
+  //     console.log('CRUD PAGE getProfile');
+
+  //     if (userProfileSnapshot.exists) {
+  //       console.log("Document data:", userProfileSnapshot.data());
+  //     } else {
+  //       console.log("No such document!");
+  //     }
+
+  //     this.userProfile = userProfileSnapshot.data();
+  //     this.fullName = userProfileSnapshot.data().fullName;
+  //     this.gender = userProfileSnapshot.data().gender;
+  //     this.skill = userProfileSnapshot.data().skill;
+  //     this.website = userProfileSnapshot.data().website;
+  //     if (userProfileSnapshot.data().shareMail !== undefined) {
+  //       this.shareMail = userProfileSnapshot.data().shareMail;
+  //     }
+  //   })
+  //   .catch( error => {
+  //     console.error("Get Profile Error: ", error);
+  //     throw new Error(error);
+  //   });
+
+  // }
 
   async confirmAlert() {
     const alert = await this.alertCtrl.create({
@@ -91,6 +104,6 @@ export class CrudPage implements OnInit {
       (error) => {
         this.ctrlAlert();
       });
-    }    
+  }    
 
 }

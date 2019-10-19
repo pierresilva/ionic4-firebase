@@ -10,11 +10,12 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
+        path: 'main',
         children: [
           {
             path: '',
-            loadChildren: '../home/home.module#HomePageModule',
+            // loadChildren: '../main/main.module#MainPageModule',
+            loadChildren: () => import('../main/main.module').then( m => m.MainPageModule),
             canActivate: [GuardService]
           }
         ]
@@ -24,7 +25,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../crud/crud.module#CrudPageModule',
+            // loadChildren: '../crud/crud.module#CrudPageModule',
+            loadChildren: () => import('../crud/crud.module').then( m => m.CrudPageModule),
             canActivate: [GuardService]
           }
         ]
@@ -32,7 +34,7 @@ const routes: Routes = [
       // redirect in
       {
         path: '',
-        redirectTo: '/tabs/home',
+        redirectTo: '/tabs/main',
         pathMatch: 'full',
         canActivate: [GuardService]
       }
@@ -41,7 +43,7 @@ const routes: Routes = [
   // redirect out
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/tabs/main',
     pathMatch: 'full',
     canActivate: [GuardService]
   },
