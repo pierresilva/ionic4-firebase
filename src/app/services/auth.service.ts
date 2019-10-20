@@ -16,7 +16,7 @@ export class AuthService {
   // private db = firebase.firestore();
 
   // constructor() {}
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore,) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.userData = afAuth.authState;
   }
 

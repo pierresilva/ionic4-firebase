@@ -23,9 +23,11 @@ export class CrudPage implements OnInit {
 
   ngOnInit() {
     console.log('Profile ngOnInit');    
-    this.crudService.getUserProfile().get().then( userProfileSnapshot => {
-        this.userProfile = userProfileSnapshot.data();
-    });    
+    this.userProfile = this.crudService.getUserProfile().valueChanges();
+    console.log('Profile userprofile:', this.userProfile );   
+    // this.crudService.getUserProfile().get().then( userProfileSnapshot => {
+    //     this.userProfile = userProfileSnapshot.data();
+    // });    
   }
 
   goEdit(): void {
