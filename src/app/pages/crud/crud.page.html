@@ -1,57 +1,34 @@
-<ion-header class="parallax-obj parallax-translate-obj header-transparent">
-  <ion-toolbar>
-    <ion-title text-center>CRUD</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content common-parallax fullscreen [scrollEvents]="true">  
+    
+    <div padding-start padding-end class="">
+    <br/>
+    <h3 no-margin class="txt-primary fs-16 fw-600">Full Name</h3>
+    <p no-margin class="txt-custom fs-13">{{userProfile?.fullName}}</p>
+    </div>        
 
-<ion-content padding fullscreen common-parallax [scrollEvents]="true"> 
+    <div padding-start padding-end class="">
+    <br/>
+    <h3 no-margin class="txt-primary fs-16 fw-600">Skill</h3>
+    <p no-margin class="txt-custom fs-13">{{userProfile?.skill}}</p>
+    </div>          
 
-    <hr/>
+    <div padding-start padding-end class="">
+    <br/>
+    <h3 no-margin class="txt-primary fs-16 fw-600">Website</h3>
+    <p no-margin class="txt-custom fs-13">{{userProfile?.website}}</p>  
+    <br/>
+    </div>             
 
-    <ion-list class="list" lines="none">
-      <ion-item>
-        <ion-label class="label">Full Name</ion-label>
-        <ion-input placeholder="Enter Full Name" [(ngModel)]="fullName" text-right class="input"></ion-input>
-      </ion-item>  
-
-      <ion-item>
-        <ion-label class="label">Gender</ion-label>
-        <ion-select placeholder="Select Gender" [(ngModel)]="gender" class="input">
-          <ion-select-option value="M">Male</ion-select-option>
-          <ion-select-option value="F">Female</ion-select-option>
-        </ion-select>
-      </ion-item>  
-   
-      <ion-item>
-        <ion-label class="label">Skills</ion-label>
-          <ion-select placeholder="Select Skills" multiple="true" cancel-text="Cancel" ok-text="Ok!" [(ngModel)]="skill" class="input">{{userProfile?.skill}}
-          <ion-select-option value="afro">Development</ion-select-option>
-          <ion-select-option value="deep">Graphic Design</ion-select-option>
-          <ion-select-option value="electro">Project Management</ion-select-option>
-        </ion-select>
-      </ion-item>   
-
-      <ion-item>
-        <ion-label class="label">Website</ion-label>
-        <ion-input placeholder="Enter Website" [(ngModel)]="website" text-right class="input"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <hr/>
-
-    <ion-list class="list" lines="none">
-      <ion-item>
-        <ion-label color="primary">Share Mail <ion-icon name="ios-mail"></ion-icon></ion-label>
-        <ion-toggle [(ngModel)]="shareMail"></ion-toggle>
-      </ion-item>
-    </ion-list>
-
-    <hr/>
-      
-    <div class="button-center">
-      <ion-button expand="block" size="small" (click)="saveProfile(fullName, gender, skill, website, shareMail)"> 
-        Save
-      </ion-button>  
+    <div class="">          
+    <ion-row>
+        <ion-col>
+        <ion-button size="small" class="" color="secondary" *ngIf="shareMail">Mail<ion-icon name="ios-mail"></ion-icon></ion-button>
+        </ion-col>
+    </ion-row>
     </div>
 
-</ion-content>
+    <div class="button-center">
+        <ion-button expand="block" size="small" (click)="goEdit()">Edit</ion-button>  
+    </div>    
+  
+  </ion-content>

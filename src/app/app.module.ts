@@ -10,17 +10,18 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    HttpClientModule,
     BrowserModule, 
+    FormsModule,    
     IonicModule.forRoot(), 
     AppRoutingModule,
-    FormsModule],
+    HttpClientModule
+    ],
   providers: [
     StatusBar,
     SplashScreen,

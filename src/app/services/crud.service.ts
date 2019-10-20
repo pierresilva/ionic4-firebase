@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -8,14 +8,13 @@ import 'firebase/firestore';
 })
 export class CrudService {
 
-  private db = firebase.firestore();
+  public db = firebase.firestore();
   public userProfile: firebase.firestore.DocumentReference;
 
   constructor() {
     console.log("crud service start");
     firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        // this.userProfile = this.db.doc(`/userProfile/${user.uid}`);
         this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
         console.log("userProfile data:", this.userProfile); //reference
       }

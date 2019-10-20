@@ -14,7 +14,6 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            // loadChildren: '../main/main.module#MainPageModule',
             loadChildren: () => import('../main/main.module').then( m => m.MainPageModule),
             canActivate: [GuardService]
           }
@@ -25,10 +24,14 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            // loadChildren: '../crud/crud.module#CrudPageModule',
             loadChildren: () => import('../crud/crud.module').then( m => m.CrudPageModule),
             canActivate: [GuardService]
-          }
+          },
+          {
+            path: 'crud-edit',
+            loadChildren: () => import('../crud-edit/crud-edit.module').then( m => m.CrudEditPageModule),            
+            canActivate: [GuardService]
+          }          
         ]
       },
       // redirect in
@@ -52,7 +55,13 @@ const routes: Routes = [
     redirectTo: '/tabs/crud',
     pathMatch: 'full',
     canActivate: [GuardService]
-  }
+  },
+  {
+    path: 'crud-edit',
+    redirectTo: '/tabs/crud/crud-edit',
+    pathMatch: 'full',
+    canActivate: [GuardService]
+  }  
 ];
 /*
 @NgModule({
