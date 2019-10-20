@@ -16,7 +16,7 @@ export class CrudService {
     firebase.auth().onAuthStateChanged( user => {
       if (user) {
         this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
-        console.log("userProfile data:", this.userProfile); //reference
+        console.log("userProfile data:", this.userProfile);
       }
     });
   }

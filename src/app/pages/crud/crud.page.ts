@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AlertController } from '@ionic/angular';
-
-import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 
 @Component({
@@ -15,15 +12,12 @@ export class CrudPage implements OnInit {
 
   public userProfile: any;
   public fullName: string;
-  public gender: string;
   public skill: string[];
   public website: string;
   public shareMail: boolean = false;  
 
   constructor(
     private router: Router,
-    private alertCtrl: AlertController,
-    private authService: AuthService,
     private crudService: CrudService    
   ) {}
 
