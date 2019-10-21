@@ -10,7 +10,8 @@ import { CrudService } from '../../services/crud.service';
 })
 export class CrudPage implements OnInit {
 
-  public userProfile: any;
+  // public userProfile: AngularFirestoreDocument<any>;
+  public userProfile;
   public fullName: string;
   public skill: string[];
   public website: string;
@@ -22,12 +23,10 @@ export class CrudPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('Profile ngOnInit');    
-    this.userProfile = this.crudService.getUserProfile().valueChanges();
-    console.log('Profile userprofile:', this.userProfile );   
-    // this.crudService.getUserProfile().get().then( userProfileSnapshot => {
-    //     this.userProfile = userProfileSnapshot.data();
-    // });    
+    console.log('Profile ngOnInit');
+    this.crudService.getUserProfile().get().then( userProfileSnapshot => {
+        this.userProfile = userProfileSnapshot.data();
+    });    
   }
 
   goEdit(): void {

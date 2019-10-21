@@ -32,6 +32,7 @@ export class CrudEditPage implements OnInit {
       });    
   }
 
+
   // ngOnInit() {
   //   console.log("CRUD PAGE NGONINIT"); 
 

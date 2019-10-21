@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-// import * as firebase from 'firebase/app';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,19 +11,14 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   userData: Observable<firebase.User>;
-  // private db = firebase.firestore();
+  private db = firebase.firestore();
 
-  // constructor() {}
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
-    this.userData = afAuth.authState;
-  }
+  constructor() {}
 
   register(email: string, password: string): Promise<any> {
-    // return firebase.auth().createUserWithEmailAndPassword(email, password)
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((credential: firebase.auth.UserCredential) => {
-        // this.db.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
-        this.afs.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
+        this.db.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
           .then( () => {
             console.log("Document successfully written!");
           })
@@ -40,8 +33,7 @@ export class AuthService {
   }  
 
   login(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    // return firebase.auth().signInWithEmailAndPassword(email, password)
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(error => {
         console.error("Login Error: ", error);
         throw new Error(error);
@@ -49,8 +41,7 @@ export class AuthService {
   }
 
   reset(email: string): Promise<void> {
-    // return firebase.auth().sendPasswordResetEmail(email)
-    return this.afAuth.auth.sendPasswordResetEmail(email)
+    return firebase.auth().sendPasswordResetEmail(email)
       .then(() => {
         console.log("Reset email successfully sent");
       })
@@ -61,8 +52,7 @@ export class AuthService {
   }  
 
   logout(): Promise<void> {
-    // return firebase.auth().signOut()
-    return this.afAuth.auth.signOut()
+    return firebase.auth().signOut()
       .then(() => {
         console.log("Successfully logged out");
       })

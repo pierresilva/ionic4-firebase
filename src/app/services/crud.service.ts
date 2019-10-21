@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-// import * as firebase from 'firebase/app';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,24 +10,20 @@ import { Observable } from 'rxjs';
 })
 export class CrudService {
 
-  // public db = firebase.firestore();
-  // public userProfile: firebase.firestore.DocumentReference;
-  public userProfile: AngularFirestoreDocument<any>;
+  public db = firebase.firestore();
+  public userProfile: firebase.firestore.DocumentReference;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor() {
     console.log("crud service start");
-    // firebase.auth().onAuthStateChanged( user => {
-    this.afAuth.auth.onAuthStateChanged( user => {  
+    firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        // this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
-        this.userProfile = this.afs.collection("userProfile").doc(`${user.uid}`);
+        this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
         console.log("userProfile data:", this.userProfile);
       }
     });
   }
 
-  // getUserProfile(): firebase.firestore.DocumentReference {
-  getUserProfile(): AngularFirestoreDocument<any> {  
+  getUserProfile(): firebase.firestore.DocumentReference {
     console.log("crud service get profile");
     return this.userProfile;
   }
