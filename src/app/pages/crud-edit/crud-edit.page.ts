@@ -27,9 +27,9 @@ export class CrudEditPage implements OnInit {
 
   ngOnInit() {
     console.log('Profile Edit ngOnInit');
-    this.crudService.getUserProfile().get().then( userProfileSnapshot => {
-        this.userProfile = userProfileSnapshot.data();
-      });    
+    // this.crudService.getUserProfile().get().then( userProfileSnapshot => {
+    //     this.userProfile = userProfileSnapshot.data();
+    //   });    
   }
 
 
@@ -96,13 +96,13 @@ export class CrudEditPage implements OnInit {
     if (fullName === undefined || gender === undefined || skill === undefined || website === undefined || shareMail === undefined) {
       return;
     }
-    this.crudService.saveProfile(fullName, gender, skill, website, shareMail)
-      .then(() => {
-        this.confirmAlert();
-      }, 
-      (error) => {
-        this.ctrlAlert();
-      });
+    // this.crudService.saveProfile(fullName, gender, skill, website, shareMail)
+    //   .then(() => {
+    //     this.confirmAlert();
+    //   }, 
+    //   (error) => {
+    //     this.ctrlAlert();
+    //   });
   }
   
   goCrudPage(): void {

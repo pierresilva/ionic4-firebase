@@ -8,8 +8,16 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+import { CrudService } from './services/crud.service';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,13 +25,17 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule, 
     FormsModule,    
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase, 'buzul'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     AppRoutingModule,
     HttpClientModule  
     ],
   providers: [
     StatusBar,
     SplashScreen,
+    CrudService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

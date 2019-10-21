@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { CrudService } from '../../services/crud.service';
 
+import { profile } from '../../models/profile';
+
 @Component({
   selector: 'app-crud',
   templateUrl: './crud.page.html',
@@ -12,10 +14,11 @@ export class CrudPage implements OnInit {
 
   // public userProfile: AngularFirestoreDocument<any>;
   public userProfile;
-  public fullName: string;
-  public skill: string[];
-  public website: string;
-  public shareMail: boolean = false;  
+  // public fullName: string;
+  // public skill: string[];
+  // public website: string;
+  // public shareMail: boolean = false;
+  profiles: profile[];
 
   constructor(
     private router: Router,
@@ -24,9 +27,12 @@ export class CrudPage implements OnInit {
 
   ngOnInit() {
     console.log('Profile ngOnInit');
-    this.crudService.getUserProfile().get().then( userProfileSnapshot => {
-        this.userProfile = userProfileSnapshot.data();
-    });    
+    // this.crudService.getUserProfile().get().then( userProfileSnapshot => {
+    //     this.userProfile = userProfileSnapshot.data();
+    // });    
+    this.crudService.getUserProfile().subscribe( profiles => {
+      console.log(profiles);
+    });
   }
 
   goEdit(): void {
