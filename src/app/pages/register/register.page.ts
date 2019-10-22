@@ -89,10 +89,11 @@ export class RegisterPage implements OnInit {
           this.loading.dismiss().then(() => {
             this.confirmAlert();
           });
-        }, 
-        error => {
+        })
+        .catch( error => {
           this.loading.dismiss().then(() => {
             this.ctrlAlert();
+            console.error("Not registered successfully: ", error);
           });
       });
       this.ctrlLoading();

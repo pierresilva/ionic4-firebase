@@ -5,10 +5,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-// import * as firebase from 'firebase/app';
-// import 'firebase/auth';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { environment } from '../environments/environment';
 
@@ -22,12 +20,10 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router,
-    public afAuth: AngularFireAuth
+    private router: Router
   ) {
-    // firebase.initializeApp(environment.firebase);
-    // firebase.auth().onAuthStateChanged( (user: firebase.User) => {
-    this.afAuth.auth.onAuthStateChanged( (user: firebase.User) => {
+    firebase.initializeApp(environment.firebase);
+    firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if(!user){
         console.log('TEST 1');
         this.router.navigate(['login']);

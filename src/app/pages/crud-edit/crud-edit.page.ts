@@ -26,22 +26,20 @@ export class CrudEditPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('Profile Edit ngOnInit');
-    // this.crudService.getUserProfile().get().then( userProfileSnapshot => {
-    //     this.userProfile = userProfileSnapshot.data();
-    //   });    
+    console.log('Profile Edit ngOnInit');  
+    this.crudService.getUserProfile().get().then(userProfileSnapshot => {
+      this.userProfile = userProfileSnapshot.data();
+      console.log('Profile Edit',this.userProfile);
+    });  
   }
 
 
   // ngOnInit() {
-  //   console.log("CRUD PAGE NGONINIT"); 
-
   //   this.crudService.getUserProfile().get().then( userProfileSnapshot => {
   //     this.userProfile = userProfileSnapshot.data();
-  //     console.log('CRUD PAGE getProfile');
 
   //     if (userProfileSnapshot.exists) {
-  //       console.log("Document data:", userProfileSnapshot.data());
+  //       console.log("Profile Edit data:", userProfileSnapshot.data());
   //     } else {
   //       console.log("No such document!");
   //     }
@@ -96,13 +94,14 @@ export class CrudEditPage implements OnInit {
     if (fullName === undefined || gender === undefined || skill === undefined || website === undefined || shareMail === undefined) {
       return;
     }
-    // this.crudService.saveProfile(fullName, gender, skill, website, shareMail)
-    //   .then(() => {
-    //     this.confirmAlert();
-    //   }, 
-    //   (error) => {
-    //     this.ctrlAlert();
-    //   });
+    this.crudService.saveProfile(fullName, gender, skill, website, shareMail)
+      .then(() => {
+        this.confirmAlert();
+      }) 
+      .catch(error => {
+        this.ctrlAlert();
+        console.error('Not saved successfully', error);
+      });
   }
   
   goCrudPage(): void {

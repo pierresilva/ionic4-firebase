@@ -1,50 +1,35 @@
 import { Injectable } from '@angular/core';
-// import * as firebase from 'firebase/app';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-
-import { profile } from '../models/profile';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
 
-  // public db = firebase.firestore();
-  // public userProfile: firebase.firestore.DocumentReference;
+  public db = firebase.firestore();
+  public userProfile: firebase.firestore.DocumentReference;
+  public currentUser: firebase.User;
 
-  profileCollection: AngularFirestoreCollection<profile>;
-  userProfiles: Observable<profile[]>;
-
-  constructor(
-    public afAuth: AngularFireAuth,
-    public afStore: AngularFirestore
-  ) {
+  constructor() {
     console.log("crud service start");
-    // firebase.auth().onAuthStateChanged( user => {
-    this.afAuth.auth.onAuthStateChanged( user => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        // this.userProfile = this.db.collection("userProfile").doc(`${user.uid}`);
-        this.userProfiles =this.afStore.collection('userProfile').valueChanges();
-        console.log("userProfiles data:", this.userProfiles);
+        this.currentUser = user;
+        this.userProfile = this.db.collection("userProfile").doc(`${this.currentUser.uid}`);        
+        console.log("userProfile doc:", this.userProfile);
       }
     });
   }
 
-  // getUserProfile(): firebase.firestore.DocumentReference {
-  getUserProfile() {  
+  getUserProfile(): firebase.firestore.DocumentReference {
     console.log("crud service get profile");
-    return this.userProfiles;
+    return this.userProfile;
   }
   
-  // saveProfile(fullName: string, gender: string, skill: string[], website: string, shareMail: boolean): Promise<any> {
-  saveProfile(fullName: string, gender: string, skill: string[], website: string, shareMail: boolean) {  
+  saveProfile(fullName: string, gender: string, skill: string[], website: string, shareMail: boolean): Promise<any> {
     console.log("crud service save profile");
-    // return this.userProfile.update({ fullName, gender, skill, website, shareMail});
-    // return this.userProfiles.update({ fullName, gender, skill, website, shareMail});
+    return this.userProfile.update({ fullName, gender, skill, website, shareMail });
   }  
 }
