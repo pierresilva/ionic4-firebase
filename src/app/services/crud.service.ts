@@ -28,8 +28,17 @@ export class CrudService {
     return this.userProfile;
   }
   
-  saveProfile(fullName: string, gender: string, skill: string[], website: string, shareMail: boolean): Promise<any> {
+  saveProfile(
+    fullName: string, 
+    gender: string,
+    birthDate: Date,
+    skill: string[],
+    countryCode: string,
+    phoneNumber: string,
+    website: string, 
+    sharePhone: boolean,
+    shareWebsite: boolean): Promise<any> {
     console.log("crud service save profile");
-    return this.userProfile.update({ fullName, gender, skill, website, shareMail });
+    return this.userProfile.update({ fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite });
   }  
 }

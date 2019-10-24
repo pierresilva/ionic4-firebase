@@ -20,16 +20,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'crud',
+        path: 'profile',
         children: [
           {
             path: '',
-            loadChildren: () => import('../crud/crud.module').then( m => m.CrudPageModule),
+            loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule),
             canActivate: [GuardService]
           },
           {
-            path: 'crud-edit',
-            loadChildren: () => import('../crud-edit/crud-edit.module').then( m => m.CrudEditPageModule),            
+            path: 'profile-edit',
+            loadChildren: () => import('../profile-edit/profile-edit.module').then( m => m.ProfileEditPageModule),            
             canActivate: [GuardService]
           }          
         ]
@@ -51,14 +51,14 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: 'crud',
-    redirectTo: '/tabs/crud',
+    path: 'profile',
+    redirectTo: '/tabs/profile',
     pathMatch: 'full',
     canActivate: [GuardService]
   },
   {
-    path: 'crud-edit',
-    redirectTo: '/tabs/crud/crud-edit',
+    path: 'profile-edit',
+    redirectTo: '/tabs/profile/profile-edit',
     pathMatch: 'full',
     canActivate: [GuardService]
   }  

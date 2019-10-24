@@ -2,7 +2,7 @@
 
   <div class="logo">
     <img src="assets/images/buzul.png">
-    <h2>Buzul</h2>
+    <h1>Buzul</h1>
   </div>
 
   <br>
@@ -27,14 +27,14 @@
 
     <br>
 
-    <ion-button expand="block" fill="solid" shape="round" color="primary" type="submit" [disabled]="!loginForm.valid">Login</ion-button>
+    <ion-button expand="block" fill="solid" size="small" class="login" color="secondary" type="submit" [disabled]="!loginForm.valid">LOGIN</ion-button>
   </form>  
 
+  <hr>
+
   <div class="">
-    <ion-button fill="clear" size="small" class="router" (click)="goRegisterPage()">Register</ion-button>    
-  </div>
-  <div class="">  
-    <ion-button fill="clear" size="small" class="router" (click)="goForgotPage()">Forgot password</ion-button>
+    <ion-button fill="clear" size="small" class="router" color="secondary" (click)="goRegisterPage()">REGISTER</ion-button>    
+    <ion-button fill="clear" size="small" class="router" color="secondary" (click)="goForgotPage()">FORGOT PASSWORD</ion-button>
   </div>  
 
 </ion-content>
