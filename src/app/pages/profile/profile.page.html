@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="primary" text-center>Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>       
+    <ion-title color="light" text-center>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding fullscreen common-parallax [scrollEvents]="true">        
   <ion-card>
-    <img src="assets/images/avatar.jpg">
+    <img src="assets/images/avatar2.jpg">
     <ion-card-header color="secondary">
-      <ion-card-title color="primary">{{ userProfile?.fullName | uppercase }}</ion-card-title>
+      <ion-card-title color="primary">{{ userProfile?.fullName }}</ion-card-title>
     </ion-card-header>
 
     <ion-item *ngIf="userProfile?.gender=='M'" color="secondary">

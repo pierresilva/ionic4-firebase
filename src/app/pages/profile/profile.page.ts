@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CrudService } from './../../services/crud.service';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,8 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private router: Router,
-    private crudService: CrudService    
+    private crudService: CrudService,
+    private authService: AuthService 
   ) {}
 
   // ionViewWillEnter() {
@@ -56,6 +58,12 @@ export class ProfilePage implements OnInit {
 
   goEdit(): void {
     this.router.navigate(['profile-edit']);
+  }
+
+  logout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['login']);
+    });
   }  
 
 }
