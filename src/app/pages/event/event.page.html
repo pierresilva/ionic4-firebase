@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>      
+    <ion-title color="light" text-center>Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding fullscreen common-parallax [scrollEvents]="true">        
+  <ion-card>
+    <img src="assets/images/avatar3.jpg">
+    <ion-card-header color="secondary">
+      <ion-card-title color="primary">TEST</ion-card-title>
+    </ion-card-header>
+
+    <ion-item color="secondary">
+      <ion-icon name="pulse" slot="start" color="primary"></ion-icon>
+      <ion-label color="primary">TEST</ion-label>
+    </ion-item>
+ 
+  </ion-card>  
+
+  <div class="">
+      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="goEdit()">EDIT</ion-button>
+  </div>    
+
+</ion-content>

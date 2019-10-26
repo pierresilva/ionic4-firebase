@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goEventPage()">
+        <ion-icon name="arrow-back"color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>    
+    <ion-title color="light" text-center>Event Edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding fullscreen common-parallax [scrollEvents]="true"> 
+
+    <hr/>
+    <ion-card color="secondary">
+      <ion-list class="list" lines="none">
+        <ion-item color="secondary">
+          <ion-label class="label">Name</ion-label>
+          <ion-input placeholder="Enter Event Name" [(ngModel)]="eventName" text-right></ion-input>
+        </ion-item>  
+
+        <ion-item color="secondary">
+          <ion-label class="label">Price</ion-label>
+          <ion-input placeholder="Enter Event Price" [(ngModel)]="eventPrice" text-right></ion-input>
+        </ion-item>        
+
+        <ion-item color="secondary">
+          <ion-label class="label">Date</ion-label>
+          <ion-datetime placeholder="Select Date" [(ngModel)]="eventDate"></ion-datetime>
+        </ion-item>       
+        
+        <ion-item color="secondary">
+          <ion-label class="label">Description</ion-label>
+          <ion-textarea placeholder="Enter Description" rows="2" maxlength="30" [(ngModel)]="eventDesc" text-right class="input"></ion-textarea>
+        </ion-item>       
+      </ion-list>  
+    </ion-card> 
+    <hr/>
+    <hr/>
+      
+    <div class="">
+      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="saveUserEvent(eventName, eventPrice, eventDate, eventDesc)">SAVE</ion-button>
+    </div>
+
+</ion-content>

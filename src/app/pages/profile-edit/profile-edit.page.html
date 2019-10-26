@@ -13,72 +13,70 @@
 
     <hr/>
     <ion-card color="secondary">
-    <ion-list class="list" lines="none">
-      <ion-item color="secondary">
-        <ion-label class="label">Full Name</ion-label>
-        <ion-input placeholder="Enter Full Name" [(ngModel)]="fullName" text-right class="input"></ion-input>
-      </ion-item>  
+      <ion-list class="list" lines="none">
+        <ion-item color="secondary">
+          <ion-label class="label">Full Name</ion-label>
+          <ion-input placeholder="Enter Full Name" [(ngModel)]="fullName" text-right></ion-input>
+        </ion-item>  
 
-      <ion-item color="secondary">
-        <ion-label class="label">Gender</ion-label>
-        <ion-select placeholder="Select Gender" [(ngModel)]="gender" class="input">
-          <ion-select-option value="M">Male</ion-select-option>
-          <ion-select-option value="F">Female</ion-select-option>
-        </ion-select>
-      </ion-item>  
+        <ion-item color="secondary">
+          <ion-label class="label">Gender</ion-label>
+          <ion-select placeholder="Select Gender" [(ngModel)]="gender">
+            <ion-select-option value="M">Male</ion-select-option>
+            <ion-select-option value="F">Female</ion-select-option>
+          </ion-select>
+        </ion-item>  
 
-      <ion-item color="secondary">
-        <ion-label class="label">Date of Birth</ion-label>
-        <ion-datetime placeholder="Select Date" [(ngModel)]="birthDate"></ion-datetime>
-      </ion-item>      
-  
-      <ion-item color="secondary">
-        <ion-label class="label">Skills</ion-label>
-          <ion-select placeholder="Select Skills" multiple="true" cancel-text="Cancel" ok-text="Ok!" [(ngModel)]="skill" class="input">{{userProfile?.skill}}
-          <ion-select-option value="Art">Art</ion-select-option>
-          <ion-select-option value="Dance">Dance</ion-select-option>
-          <ion-select-option value="Sport">Sport</ion-select-option>
-          <ion-select-option value="Game">Game</ion-select-option>
-        </ion-select>
-      </ion-item>   
+        <ion-item color="secondary">
+          <ion-label class="label">Date of Birth</ion-label>
+          <ion-datetime placeholder="Select Date" [(ngModel)]="birthDate"></ion-datetime>
+        </ion-item>      
+    
+        <ion-item color="secondary">
+          <ion-label class="label">Skills</ion-label>
+            <ion-select placeholder="Select Skills" multiple="true" cancel-text="Cancel" ok-text="Ok!" [(ngModel)]="skill">{{userProfile?.skill}}
+            <ion-select-option value="Art">Art</ion-select-option>
+            <ion-select-option value="Dance">Dance</ion-select-option>
+            <ion-select-option value="Sport">Sport</ion-select-option>
+            <ion-select-option value="Game">Game</ion-select-option>
+          </ion-select>
+        </ion-item>   
 
-      <ion-item color="secondary">
-        <ion-label class="label">Country Code</ion-label>
-        <ion-select placeholder="Select Code" [(ngModel)]="countryCode" class="input">
-          <ion-select-option *ngFor="let code of countryCodes" [value]="code.dial_code">{{ code.name + " " + code.dial_code}}</ion-select-option>
-        </ion-select>
-      </ion-item>  
-      
-      <ion-item color="secondary">
-        <ion-label class="label">Phone Number</ion-label>
-        <ion-input placeholder="Enter Phone" [(ngModel)]="phoneNumber" text-right class="input"></ion-input>
-      </ion-item>       
+        <ion-item color="secondary">
+          <ion-label class="label">Country Code</ion-label>
+          <ion-select placeholder="Select Code" [(ngModel)]="countryCode">
+            <ion-select-option *ngFor="let code of countryCodes" [value]="code.dial_code">{{ code.name + " " + code.dial_code}}</ion-select-option>
+          </ion-select>
+        </ion-item>  
+        
+        <ion-item color="secondary">
+          <ion-label class="label">Phone Number</ion-label>
+          <ion-input placeholder="Enter Phone" [(ngModel)]="phoneNumber" text-right></ion-input>
+        </ion-item>       
 
-      <ion-item color="secondary">
-        <ion-label class="label">Website</ion-label>
-        <ion-input placeholder="Enter Website" [(ngModel)]="website" text-right class="input"></ion-input>
-      </ion-item>
-    </ion-list>  
+        <ion-item color="secondary">
+          <ion-label class="label">Website</ion-label>
+          <ion-input placeholder="Enter Website" [(ngModel)]="website" text-right></ion-input>
+        </ion-item>
+      </ion-list>  
 
-    <hr width="100%" size="6" color="secondary">
+      <ion-list class="list" lines="none">
+        <ion-item color="secondary">
+          <ion-label color="primary">Share Phone <ion-icon name="ios-mail"></ion-icon></ion-label>
+          <ion-toggle [(ngModel)]="sharePhone"></ion-toggle>
+        </ion-item>
 
-    <ion-list class="list" lines="none">
-      <ion-item color="secondary">
-        <ion-label color="primary">Share Phone <ion-icon name="ios-mail"></ion-icon></ion-label>
-        <ion-toggle [(ngModel)]="sharePhone"></ion-toggle>
-      </ion-item>
-
-      <ion-item color="secondary">
-        <ion-label color="primary">Share Website <ion-icon name="ios-mail"></ion-icon></ion-label>
-        <ion-toggle [(ngModel)]="shareWebsite"></ion-toggle>
-      </ion-item>
-    </ion-list>
+        <ion-item color="secondary">
+          <ion-label color="primary">Share Website <ion-icon name="ios-mail"></ion-icon></ion-label>
+          <ion-toggle [(ngModel)]="shareWebsite"></ion-toggle>
+        </ion-item>
+      </ion-list>
     </ion-card> 
     <hr/>
     <hr/>
       
     <div class="">
-      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="saveProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)">SAVE</ion-button>
+      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)">SAVE</ion-button>
     </div>
 
 </ion-content>

@@ -14,7 +14,6 @@ import { CrudService } from '../../services/crud.service';
 })
 export class ProfileEditPage implements OnInit {
 
-  public userProfile: any;
   public fullName: string;
   public gender: string;
   public birthDate: Date;
@@ -46,9 +45,8 @@ export class ProfileEditPage implements OnInit {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
-            if (userProfileSnapshot) {
+            if (userProfileSnapshot.exists) {
               console.log('async userProfileSnapshot', userProfileSnapshot);
-              this.userProfile = userProfileSnapshot.data();
               this.fullName = userProfileSnapshot.data().fullName;
               this.gender = userProfileSnapshot.data().gender;
               this.birthDate = userProfileSnapshot.data().birthDate;
@@ -61,11 +59,12 @@ export class ProfileEditPage implements OnInit {
                 this.sharePhone = userProfileSnapshot.data().sharePhone;
                 this.shareWebsite = userProfileSnapshot.data().shareWebsite;
               }
-              console.log('async userProfile', this.userProfile);
               resolve(true);
-            } else {
+            } 
+              /*If you want to add a control, you can open this control below 
+              else {
               reject('Error: Data has not arrived yet!');
-            }
+            }*/
         });
       }, 10);
     });
@@ -101,7 +100,7 @@ export class ProfileEditPage implements OnInit {
     await alert.present();
   }
 
-  saveProfile(
+  saveUserProfile(
     fullName: string, 
     gender: string,
     birthDate: Date,
@@ -122,7 +121,7 @@ export class ProfileEditPage implements OnInit {
       return;
     }
     */
-    this.crudService.saveProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)
+    this.crudService.saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)
       .then(() => {
         this.confirmAlert();
       }) 

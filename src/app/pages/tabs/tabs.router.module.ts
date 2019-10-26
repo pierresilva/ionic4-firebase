@@ -34,6 +34,21 @@ const routes: Routes = [
           }          
         ]
       },
+      {
+        path: 'event',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../event/event.module').then( m => m.EventPageModule),
+            canActivate: [GuardService]
+          },
+          {
+            path: 'event-edit',
+            loadChildren: () => import('../event-edit/event-edit.module').then( m => m.EventEditPageModule),            
+            canActivate: [GuardService]
+          }       
+        ]
+      },
       // redirect in
       {
         path: '',
@@ -61,7 +76,19 @@ const routes: Routes = [
     redirectTo: '/tabs/profile/profile-edit',
     pathMatch: 'full',
     canActivate: [GuardService]
-  }  
+  },
+  {
+    path: 'event',
+    redirectTo: '/tabs/event',
+    pathMatch: 'full',
+    canActivate: [GuardService]
+  },
+  {
+    path: 'event-edit',
+    redirectTo: '/tabs/event/event-edit',
+    pathMatch: 'full',
+    canActivate: [GuardService]
+  },  
 ];
 /*
 @NgModule({
