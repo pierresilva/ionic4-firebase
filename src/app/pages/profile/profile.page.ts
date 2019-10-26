@@ -43,7 +43,7 @@ export class ProfilePage implements OnInit {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
-            if (userProfileSnapshot) {
+            if (userProfileSnapshot.exists) {
               console.log('async userProfileSnapshot', userProfileSnapshot);
               this.userProfile = userProfileSnapshot.data();
               console.log('async userProfile', this.userProfile);

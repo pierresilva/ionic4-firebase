@@ -69,7 +69,7 @@ export class RegisterPage implements OnInit {
         {
           text: 'Join Now',
           handler: () => {
-          this.router.navigate(['crud']);
+          this.router.navigate(['']);
           }
         }
       ]

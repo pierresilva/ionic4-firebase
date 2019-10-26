@@ -9,6 +9,7 @@ import 'firebase/firestore';
 export class AuthService {
 
   private db = firebase.firestore();
+  public currentUser: firebase.User;
 
   constructor() {}
 
@@ -16,11 +17,18 @@ export class AuthService {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((credential: firebase.auth.UserCredential) => {
         this.db.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
-          .then(() => {
-            console.log("Document successfully written!");
+          .then(() => {            
+            this.currentUser = firebase.auth().currentUser;
+            this.db.collection("userEvent").doc(`${this.currentUser.uid}`) .set({ email: this.currentUser.email, uid: this.currentUser.uid })
+              .then(() => {
+                console.log("Document successfully written!");
+              })
+              .catch(error => {
+                console.error("Error writing userEvent: ", error);
+              });            
           })
           .catch(error => {
-            console.error("Error writing document: ", error);
+            console.error("Error writing userProfile: ", error);
           });
       })
       .catch(error => {        
