@@ -25,12 +25,15 @@ export class ProfilePage implements OnInit {
   }  
   ionViewDidEnter() {
     console.log('Profile ionViewDidEnter');
+    this.asyncUserProfile();
   }  
   ionViewWillLeave() {
     console.log('Profile ionViewWillLeave');
+    this.asyncUserProfile();
   }  
   ionViewDidLeave() {
     console.log('Profile ionViewDidLeave');
+    this.asyncUserProfile();
   }
 
   ngOnInit() {
