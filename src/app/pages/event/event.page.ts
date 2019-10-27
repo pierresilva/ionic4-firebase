@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CrudService } from './../../services/crud.service';
-import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-event',
@@ -11,14 +10,34 @@ import { AuthService } from '../../services/auth.service'
 })
 export class EventPage implements OnInit {
 
+  public userEvent: any;
+
   constructor(
     private router: Router,
-    private crudService: CrudService,
-    private authService: AuthService 
+    private crudService: CrudService
   ) {}
 
   ngOnInit() {
+    console.log('Event ngOnInit');
+    this.asyncUserEvent();
   }
+
+  asyncUserEvent() {
+    return new Promise((resolve, reject) => {
+      setTimeout(()=> {
+        this.crudService.getUserEvent().get().then(userEventSnapshot => {
+            if (userEventSnapshot.exists) {
+              console.log('async userEventSnapshot', userEventSnapshot);
+              this.userEvent = userEventSnapshot.data();
+              console.log('async userEvent', this.userEvent);
+              resolve(true);
+            } else {
+              reject('Error: Data has not arrived yet!');
+            }
+        });
+      }, 10);
+    });
+  }  
 
   goEdit(): void {
     this.router.navigate(['event-edit']);

@@ -8,13 +8,69 @@
   <ion-card>
     <img src="assets/images/avatar3.jpg">
     <ion-card-header color="secondary">
-      <ion-card-title color="primary">TEST</ion-card-title>
+      <ion-card-title color="primary">Event Page</ion-card-title>
     </ion-card-header>
 
-    <ion-item color="secondary">
-      <ion-icon name="pulse" slot="start" color="primary"></ion-icon>
-      <ion-label color="primary">TEST</ion-label>
-    </ion-item>
+    <!-- eventName: string,
+    eventPrice: string,
+    eventDate: Date,
+    eventDesc: string -->
+
+    <div *ngIf="userEvent?.eventName==null; then thenNameNull; else elseName"></div>
+    <ng-template #thenNameNull>
+      <ion-item color="secondary">
+        <ion-icon name="clipboard" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">Undefined</ion-label>
+      </ion-item>
+    </ng-template>
+    <ng-template #elseName>
+      <ion-item color="secondary">
+        <ion-icon name="clipboard" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">{{ userEvent?.eventName }}</ion-label>
+      </ion-item>
+    </ng-template>   
+    
+    <div *ngIf="userEvent?.eventPrice==null; then thenPriceNull; else elsePrice"></div>
+    <ng-template #thenPriceNull>
+      <ion-item color="secondary">
+        <ion-icon name="pricetag" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">Undefined</ion-label>
+      </ion-item>
+    </ng-template>
+    <ng-template #elsePrice>
+      <ion-item color="secondary">
+        <ion-icon name="pricetag" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">{{ userEvent?.eventPrice }}</ion-label>
+      </ion-item>
+    </ng-template>   
+    
+    <div *ngIf="userEvent?.eventDate==null; then thenDateNull; else elseDate"></div>
+    <ng-template #thenDateNull>
+      <ion-item color="secondary">
+        <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">Undefined</ion-label>
+      </ion-item>
+    </ng-template>
+    <ng-template #elseDate>
+      <ion-item color="secondary">
+        <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">{{ userEvent?.eventDate | date : 'dd MMM yyyy' }}</ion-label>
+      </ion-item>
+    </ng-template>    
+
+    <div *ngIf="userEvent?.eventDesc==null; then thenDescNull; else elseDesc"></div>
+    <ng-template #thenDescNull>
+      <ion-item color="secondary">
+        <ion-icon name="book" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">Undefined</ion-label>
+      </ion-item>
+    </ng-template>
+    <ng-template #elseDesc>
+      <ion-item color="secondary">
+        <ion-icon name="book" slot="start" color="primary"></ion-icon>
+        <ion-label color="primary">{{ userEvent?.eventDesc }}</ion-label>
+      </ion-item>
+    </ng-template>     
  
   </ion-card>  
 

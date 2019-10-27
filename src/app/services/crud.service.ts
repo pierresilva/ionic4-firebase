@@ -9,8 +9,8 @@ import 'firebase/firestore';
 export class CrudService {
 
   public db = firebase.firestore();
-  public userProfile: firebase.firestore.DocumentReference;
   public currentUser: firebase.User;
+  public userProfile: firebase.firestore.DocumentReference;
   public userEvent: firebase.firestore.DocumentReference;
 
   constructor() {

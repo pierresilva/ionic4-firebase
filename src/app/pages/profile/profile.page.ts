@@ -12,16 +12,6 @@ import { AuthService } from '../../services/auth.service'
 export class ProfilePage implements OnInit {
 
   public userProfile: any;
-  public fullName: string;
-  public gender: string;
-  public birthDate: Date;
-  public skill: string[];
-  public countryCode: string;
-  public phoneNumber: string;
-  public website: string;
-  public sharePhone: boolean = false; 
-  public shareWebsite: boolean = false; 
-  public email: string; 
 
   constructor(
     private router: Router,
@@ -31,7 +21,7 @@ export class ProfilePage implements OnInit {
 
   ionViewWillEnter() {
     console.log('Profile ionViewWillEnter');
-    // this.asyncUserProfile();  
+    this.asyncUserProfile();  
   }  
   ionViewDidEnter() {
     console.log('Profile ionViewDidEnter');
