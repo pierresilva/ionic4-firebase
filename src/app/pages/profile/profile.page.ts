@@ -29,10 +29,19 @@ export class ProfilePage implements OnInit {
     private authService: AuthService 
   ) {}
 
-  // ionViewWillEnter() {
-  //   console.log('Profile ionViewWillEnter');
-  //   this.ngOnInit();
-  // }  
+  ionViewWillEnter() {
+    console.log('Profile ionViewWillEnter');
+    // this.asyncUserProfile();  
+  }  
+  ionViewDidEnter() {
+    console.log('Profile ionViewDidEnter');
+  }  
+  ionViewWillLeave() {
+    console.log('Profile ionViewWillLeave');
+  }  
+  ionViewDidLeave() {
+    console.log('Profile ionViewDidLeave');
+  }
 
   ngOnInit() {
     console.log('Profile ngOnInit');

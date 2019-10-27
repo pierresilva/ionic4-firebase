@@ -25,10 +25,8 @@ export class AppComponent {
     firebase.initializeApp(environment.firebase);
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if(!user){
-        console.log('TEST 1');
         this.router.navigate(['login']);
       }else{
-        console.log('TEST 2');
         this.router.navigate(['tabs']);
       }
     });    
