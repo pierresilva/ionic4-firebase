@@ -9,21 +9,20 @@
 
   <form [formGroup]="registerForm" class="form" (submit)="registerFirebase()" novalidate>
 
+    <ng-template [ngIf]="!registerForm.controls.email.valid  && (registerForm.controls.email.dirty || registerForm.controls.email.touched)">
+      <p class="alert">Your email is not valid!</p>
+    </ng-template>
+    <ng-template [ngIf]="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || registerForm.controls.email.touched)">
+      <p class="alert">Please enter more than 6 characters.</p>
+    </ng-template>
+
     <ion-item lines="none" class="item">
       <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!registerForm.controls.email.valid && registerForm.controls.email.dirty"></ion-input>
     </ion-item>
-        
-    <div class="" *ngIf="!registerForm.controls.email.valid  && registerForm.controls.email.dirty">
-      <p class="alert">Your email is not valid!</p>
-    </div>
 
     <ion-item lines="none" margin-top class="item">
       <ion-input formControlName="password" type="password" placeholder="Enter Password" [class.invalid]="!registerForm.controls.password.valid && registerForm.controls.password.dirty"></ion-input>
     </ion-item>
-
-    <div class="" *ngIf="!registerForm.controls.password.valid && registerForm.controls.password.dirty">
-      <p class="alert">Please enter more than 6 characters.</p>
-    </div>
 
     <br>
 

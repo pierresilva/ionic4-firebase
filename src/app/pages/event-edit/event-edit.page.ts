@@ -11,7 +11,8 @@ import { CrudService } from '../../services/crud.service';
   styleUrls: ['./event-edit.page.scss'],
 })
 export class EventEditPage implements OnInit {
-
+  
+  public userEvent: any;
   public eventName: string;
   public eventPrice: string;
   public eventDate: Date;
@@ -28,18 +29,10 @@ export class EventEditPage implements OnInit {
     this.asyncUserEvent();  
   }  
 
-  // ionViewDidEnter() {
-  //   console.log('Event Edit ionViewDidEnter');
-  //   this.asyncUserEvent();
-  // }
-
   ionViewWillLeave() {
     console.log('Event Edit ionViewWillLeave');
+    this.userEvent = null;
   }
-
-  // ionViewDidLeave() {
-  //   console.log('Event Edit ionViewDidLeave');
-  // }
 
   ngOnInit() {
     console.log('Event Edit ngOnInit');
@@ -51,10 +44,11 @@ export class EventEditPage implements OnInit {
       setTimeout(()=> {
         this.crudService.getUserEvent().get().then(userEventSnapshot => {  
             if (userEventSnapshot.exists) {
-              this.eventName = userEventSnapshot.data().eventName;
-              this.eventPrice = userEventSnapshot.data().eventPrice;
-              this.eventDate = userEventSnapshot.data().eventDate;
-              this.eventDesc = userEventSnapshot.data().eventDesc;
+              this.userEvent = userEventSnapshot.data();
+              this.eventName = this.userEvent.eventName;
+              this.eventPrice = this.userEvent.eventPrice;
+              this.eventDate = this.userEvent.eventDate;
+              this.eventDesc = this.userEvent.eventDesc;
               resolve(true);
             }
         });

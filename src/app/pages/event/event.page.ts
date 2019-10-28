@@ -22,18 +22,10 @@ export class EventPage implements OnInit {
     this.asyncUserEvent();  
   }  
 
-  // ionViewDidEnter() {
-  //   console.log('Event ionViewDidEnter');
-  //   this.asyncUserEvent();
-  // }
-
   ionViewWillLeave() {
     console.log('Event ionViewWillLeave');
+    this.userEvent = null;
   }
-
-  // ionViewDidLeave() {
-  //   console.log('Event ionViewDidLeave');
-  // }
 
   ngOnInit() {
     console.log('Event ngOnInit');

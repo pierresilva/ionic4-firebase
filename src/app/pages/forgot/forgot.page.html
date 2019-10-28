@@ -10,7 +10,7 @@
   <form [formGroup]="resetForm" class="form" (submit)="resetFirebase()" novalidate>
 
     <ion-item lines="none" class="item">
-      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!resetForm.controls.email.valid && resetForm.controls.email.dirty"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!resetForm.controls.email.valid && (resetForm.controls.email.dirty || resetForm.controls.email.touched)"></ion-input>
     </ion-item>
         
     <div class="" *ngIf="!resetForm.controls.email.valid  && resetForm.controls.email.dirty">

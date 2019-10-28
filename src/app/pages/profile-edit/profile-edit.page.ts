@@ -14,6 +14,7 @@ import { CrudService } from '../../services/crud.service';
 })
 export class ProfileEditPage implements OnInit {
 
+  public userProfile: any;
   public fullName: string;
   public gender: string;
   public birthDate: Date;
@@ -37,18 +38,10 @@ export class ProfileEditPage implements OnInit {
     this.asyncUserProfile();  
   }  
 
-  // ionViewDidEnter() {
-  //   console.log('Profile Edit ionViewDidEnter');
-  //   this.asyncUserProfile();
-  // }
-
   ionViewWillLeave() {
     console.log('Profile Edit ionViewWillLeave');
+    this.userProfile = null;
   }
-
-  // ionViewDidLeave() {
-  //   console.log('Profile Edit ionViewDidLeave');
-  // }  
 
   ngOnInit() {
     console.log('Profile Edit ngOnInit');
@@ -64,18 +57,20 @@ export class ProfileEditPage implements OnInit {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
             if (userProfileSnapshot.exists) {
-              this.fullName = userProfileSnapshot.data().fullName;
-              this.gender = userProfileSnapshot.data().gender;
-              this.birthDate = userProfileSnapshot.data().birthDate;
-              this.skill = userProfileSnapshot.data().skill;
-              this.countryCode = userProfileSnapshot.data().countryCode;
-              this.phoneNumber = userProfileSnapshot.data().phoneNumber;
-              this.website = userProfileSnapshot.data().website;
-              if (userProfileSnapshot.data().sharePhone !== undefined &&
-              userProfileSnapshot.data().shareWebsite !== undefined) {
-                this.sharePhone = userProfileSnapshot.data().sharePhone;
-                this.shareWebsite = userProfileSnapshot.data().shareWebsite;
-              }
+              this.userProfile = userProfileSnapshot.data();
+              this.fullName = this.userProfile.fullName;
+              this.gender = this.userProfile.gender;
+              this.birthDate = this.userProfile.birthDate;
+              this.skill = this.userProfile.skill;
+              this.countryCode = this.userProfile.countryCode;
+              this.phoneNumber = this.userProfile.phoneNumber;
+              this.website = this.userProfile.website;
+              if (this.userProfile.sharePhone !== undefined &&
+                  this.userProfile.shareWebsite !== undefined) 
+                {
+                this.sharePhone = this.userProfile.sharePhone;
+                this.shareWebsite = this.userProfile.shareWebsite;
+                }
               resolve(true);
             } 
         });

@@ -10,7 +10,7 @@ export class TabsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('tabs page control');
+    // console.log('tabs page control');
   }
 
 }
