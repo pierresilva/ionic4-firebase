@@ -50,7 +50,7 @@ export class ForgotPage implements OnInit {
 
   async resetFirebase(): Promise<void> {
     if (!this.resetForm.valid) {
-      console.log('Register Page is not valid:', this.resetForm.value);
+      console.error("Register Page is not valid:", this.resetForm.value);
     } else {
       const email: string = this.resetForm.value.email;
 

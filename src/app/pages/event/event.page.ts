@@ -17,8 +17,22 @@ export class EventPage implements OnInit {
     private crudService: CrudService
   ) {}
 
+  ionViewWillEnter() {
+    console.log('Event ionViewWillEnter');
+    this.asyncUserEvent();  
+  }  
+  ionViewDidEnter() {
+    console.log('Event ionViewDidEnter');
+    this.asyncUserEvent();
+  }  
+  ionViewWillLeave() {
+    console.log('Event ionViewWillLeave');
+  }  
+  ionViewDidLeave() {
+    console.log('Event ionViewDidLeave');
+  }
+
   ngOnInit() {
-    console.log('Event ngOnInit');
     this.asyncUserEvent();
   }
 
@@ -27,9 +41,7 @@ export class EventPage implements OnInit {
       setTimeout(()=> {
         this.crudService.getUserEvent().get().then(userEventSnapshot => {
             if (userEventSnapshot.exists) {
-              console.log('async userEventSnapshot', userEventSnapshot);
               this.userEvent = userEventSnapshot.data();
-              console.log('async userEvent', this.userEvent);
               resolve(true);
             } else {
               reject('Error: Data has not arrived yet!');

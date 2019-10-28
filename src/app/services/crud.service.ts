@@ -9,23 +9,22 @@ import 'firebase/firestore';
 export class CrudService {
 
   public db = firebase.firestore();
-  public currentUser: firebase.User;
+  public userID: string;
   public userProfile: firebase.firestore.DocumentReference;
   public userEvent: firebase.firestore.DocumentReference;
 
   constructor() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.currentUser = user;
-        this.userProfile = this.db.collection("userProfile").doc(`${this.currentUser.uid}`);        
-        console.log("userProfile doc:", this.userProfile);
-        this.userEvent = this.db.collection("userEvent").doc(`${this.currentUser.uid}`);
-        console.log("eventList doc:", this.userEvent);
+        this.userID = user.uid;
+        this.userProfile = this.db.collection("userProfile").doc(`${this.userID}`);        
+        this.userEvent = this.db.collection("userEvent").doc(`${this.userID}`);
       }
     });
   }
 
   getUserProfile(): firebase.firestore.DocumentReference {
+    if(!this.userID) return;
     return this.userProfile;
   }
   
@@ -39,6 +38,7 @@ export class CrudService {
     website: string, 
     sharePhone: boolean,
     shareWebsite: boolean): Promise<any> {
+    if(!this.userID) return;
     return this.userProfile.update({ fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite });
   }  
 
@@ -48,20 +48,28 @@ export class CrudService {
     eventDate: Date,
     eventDesc: string
   ): Promise<any> {
+    if(!this.userID) return;
     return this.userEvent.set({ eventName, eventPrice, eventDate, eventDesc });
   }
 
   getUserEvent(): firebase.firestore.DocumentReference {
+    if(!this.userID) return;
     return this.userEvent;
   }
 
   deleteUserEvent() {
-    this.db.collection("userEvent").doc(`${this.currentUser.uid}`).delete().then(() => {
-      console.log('Event successfully deleted!');
+    if(!this.userID) return;
+    this.db.collection("userEvent").doc(`${this.userID}`).delete().then(() => {
+      console.log("Event successfully deleted!");
     })
     .catch(error => {  
-      console.error('Event delete error!', error);
+      console.error("Event delete error!", error);
     });
+  }
+
+  getOut() {
+    this.userProfile = null;        
+    this.userEvent = null;
   }
 
 }

@@ -63,7 +63,7 @@ export class RegisterPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
+            console.log("Confirm Cancel:", blah);
           }
         },
         {
@@ -79,7 +79,7 @@ export class RegisterPage implements OnInit {
 
   async registerFirebase(): Promise<void> {
     if (!this.registerForm.valid) {
-      console.log('Register Page is not valid:', this.registerForm.value);
+      console.error("Register Page is not valid:", this.registerForm.value);
     } else {
       const email: string = this.registerForm.value.email;
       const password: string = this.registerForm.value.password;

@@ -29,26 +29,26 @@ export class ProfilePage implements OnInit {
   }  
   ionViewWillLeave() {
     console.log('Profile ionViewWillLeave');
-    this.asyncUserProfile();
   }  
   ionViewDidLeave() {
     console.log('Profile ionViewDidLeave');
-    this.asyncUserProfile();
   }
 
   ngOnInit() {
     console.log('Profile ngOnInit');
-    this.asyncUserProfile();  
+    this.asyncUserProfile();
   }
+
+  ngOnDestroy() {
+    console.log('Profile ngOnDestroy');
+  }  
 
   asyncUserProfile() {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
             if (userProfileSnapshot.exists) {
-              console.log('async userProfileSnapshot', userProfileSnapshot);
               this.userProfile = userProfileSnapshot.data();
-              console.log('async userProfile', this.userProfile);
               resolve(true);
             } else {
               reject('Error: Data has not arrived yet!');
@@ -62,8 +62,14 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['profile-edit']);
   }
 
+  getOut(): void {
+    this.crudService.getOut();
+  }
+
   logout(): void {
     this.authService.logout().then(() => {
+      // this.userProfile = null;
+      this.getOut();
       this.router.navigate(['login']);
     });
   }  

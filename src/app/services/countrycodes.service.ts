@@ -16,13 +16,11 @@ export class CountrycodesService {
 
   getPhoneCodes(): Observable<countrycodes[]> {
     return this.http.get<countrycodes[]>(this.url).pipe(
-      // tap(data => console.log('All Phone Codes: ' + JSON.stringify(data)), catchError(this.handleError))
       tap(data => JSON.stringify(data), catchError(this.handleError))
     );
   }
 
   private handleError(err: HttpErrorResponse) {
-    console.log('Phone Codes Error: ', err.message);
     return throwError(err.message);
   }
 }

@@ -13,19 +13,14 @@ export class GuardService implements CanActivate {
     private router: Router,
     ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot, 
-    state: RouterStateSnapshot
-    ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged((user: firebase.User) => {
         if (user) {
-          console.log('canActivate, User is signed in');
           resolve(true);
         } else {
-          console.log('canActivate, No user is signed in');
           this.router.navigate(['login']);
-          resolve(false);
+          reject(true);
         }
       });
     });

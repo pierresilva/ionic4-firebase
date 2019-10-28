@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
 
   async loginFirebase(): Promise<void> {
     if (!this.loginForm.valid) {
-      console.log('Login Page is not valid:', this.loginForm.value);
+      console.error("Login Page is not valid:", this.loginForm.value);
     } else {
       const email: string = this.loginForm.value.email;
       const password: string = this.loginForm.value.password;

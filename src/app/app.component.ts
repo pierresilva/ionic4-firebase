@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -27,7 +28,7 @@ export class AppComponent {
       if(!user){
         this.router.navigate(['login']);
       }else{
-        this.router.navigate(['tabs']);
+        this.router.navigate(['profile']);
       }
     });    
     this.initializeApp();

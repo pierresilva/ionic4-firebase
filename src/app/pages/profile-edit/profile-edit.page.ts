@@ -32,8 +32,22 @@ export class ProfileEditPage implements OnInit {
     private crudService: CrudService    
   ) {}
 
+  ionViewWillEnter() {
+    console.log('Profile Edit ionViewWillEnter');
+    this.asyncUserProfile();  
+  }  
+  ionViewDidEnter() {
+    console.log('Profile Edit ionViewDidEnter');
+    this.asyncUserProfile();
+  }  
+  ionViewWillLeave() {
+    console.log('Profile Edit ionViewWillLeave');
+  }  
+  ionViewDidLeave() {
+    console.log('Profile Edit ionViewDidLeave');
+  }  
+
   ngOnInit() {
-    console.log('Profile Edit ngOnInit');  
     this.asyncUserProfile();
 
     this.countrycodesService.getPhoneCodes().subscribe(codes => {
@@ -41,12 +55,15 @@ export class ProfileEditPage implements OnInit {
     });    
   }
 
+  ngOnDestroy() {
+    console.log('Profile Edit ngOnDestroy');
+  }  
+
   asyncUserProfile() {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
             if (userProfileSnapshot.exists) {
-              console.log('async userProfileSnapshot', userProfileSnapshot);
               this.fullName = userProfileSnapshot.data().fullName;
               this.gender = userProfileSnapshot.data().gender;
               this.birthDate = userProfileSnapshot.data().birthDate;
@@ -61,10 +78,6 @@ export class ProfileEditPage implements OnInit {
               }
               resolve(true);
             } 
-              /*If you want to add a control, you can open this control below 
-              else {
-              reject('Error: Data has not arrived yet!');
-            }*/
         });
       }, 10);
     });
@@ -127,7 +140,7 @@ export class ProfileEditPage implements OnInit {
       }) 
       .catch(error => {
         this.ctrlAlert();
-        console.error('Not saved successfully', error);
+        console.error("Not saved successfully", error);
       });
   }
   

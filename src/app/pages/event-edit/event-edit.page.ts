@@ -23,8 +23,22 @@ export class EventEditPage implements OnInit {
     private crudService: CrudService  
   ) {}
 
+  ionViewWillEnter() {
+    console.log('Event Edit ionViewWillEnter');
+    this.asyncUserEvent();  
+  }  
+  ionViewDidEnter() {
+    console.log('Event Edit ionViewDidEnter');
+    this.asyncUserEvent();
+  }  
+  ionViewWillLeave() {
+    console.log('Event Edit ionViewWillLeave');
+  }  
+  ionViewDidLeave() {
+    console.log('Event Edit ionViewDidLeave');
+  }
+
   ngOnInit() {
-    console.log('Event Edit ngOnInit');  
     this.asyncUserEvent();
   }
 
@@ -33,17 +47,12 @@ export class EventEditPage implements OnInit {
       setTimeout(()=> {
         this.crudService.getUserEvent().get().then(userEventSnapshot => {  
             if (userEventSnapshot.exists) {
-              console.log('async userEventSnapshot', userEventSnapshot);
               this.eventName = userEventSnapshot.data().eventName;
               this.eventPrice = userEventSnapshot.data().eventPrice;
               this.eventDate = userEventSnapshot.data().eventDate;
               this.eventDesc = userEventSnapshot.data().eventDesc;
               resolve(true);
-            } 
-              /*If you want to add a control, you can open this control below 
-              else {
-              reject('Error: Data has not arrived yet!');
-            }*/
+            }
         });
       }, 10);
     });
@@ -98,7 +107,7 @@ export class EventEditPage implements OnInit {
       }) 
       .catch(error => {
         this.ctrlAlert();
-        console.error('Not saved successfully', error);
+        console.error("Not saved successfully", error);
       });
   }  
 
