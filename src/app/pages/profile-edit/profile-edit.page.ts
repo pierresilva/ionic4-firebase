@@ -36,28 +36,28 @@ export class ProfileEditPage implements OnInit {
     console.log('Profile Edit ionViewWillEnter');
     this.asyncUserProfile();  
   }  
-  ionViewDidEnter() {
-    console.log('Profile Edit ionViewDidEnter');
-    this.asyncUserProfile();
-  }  
+
+  // ionViewDidEnter() {
+  //   console.log('Profile Edit ionViewDidEnter');
+  //   this.asyncUserProfile();
+  // }
+
   ionViewWillLeave() {
     console.log('Profile Edit ionViewWillLeave');
-  }  
-  ionViewDidLeave() {
-    console.log('Profile Edit ionViewDidLeave');
-  }  
+  }
+
+  // ionViewDidLeave() {
+  //   console.log('Profile Edit ionViewDidLeave');
+  // }  
 
   ngOnInit() {
+    console.log('Profile Edit ngOnInit');
     this.asyncUserProfile();
 
     this.countrycodesService.getPhoneCodes().subscribe(codes => {
       this.countryCodes = codes;
     });    
   }
-
-  ngOnDestroy() {
-    console.log('Profile Edit ngOnDestroy');
-  }  
 
   asyncUserProfile() {
     return new Promise((resolve, reject) => {

@@ -27,8 +27,8 @@ export class AppComponent {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if(!user){
         this.router.navigate(['login']);
-      }else{
-        this.router.navigate(['profile']);
+      } else {
+        this.router.navigate(['tabs']);
       }
     });    
     this.initializeApp();

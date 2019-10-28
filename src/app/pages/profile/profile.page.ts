@@ -23,25 +23,25 @@ export class ProfilePage implements OnInit {
     console.log('Profile ionViewWillEnter');
     this.asyncUserProfile();  
   }  
-  ionViewDidEnter() {
-    console.log('Profile ionViewDidEnter');
-    this.asyncUserProfile();
-  }  
+
+  // ionViewDidEnter() {
+  //   console.log('Profile ionViewDidEnter');
+  //   this.asyncUserProfile();
+  // }  
+  
   ionViewWillLeave() {
     console.log('Profile ionViewWillLeave');
-  }  
-  ionViewDidLeave() {
-    console.log('Profile ionViewDidLeave');
+    this.userProfile = null;
   }
+
+  // ionViewDidLeave() {
+  //   console.log('Profile ionViewDidLeave');
+  // }
 
   ngOnInit() {
     console.log('Profile ngOnInit');
     this.asyncUserProfile();
   }
-
-  ngOnDestroy() {
-    console.log('Profile ngOnDestroy');
-  }  
 
   asyncUserProfile() {
     return new Promise((resolve, reject) => {
@@ -62,14 +62,9 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['profile-edit']);
   }
 
-  getOut(): void {
-    this.crudService.getOut();
-  }
-
   logout(): void {
     this.authService.logout().then(() => {
-      // this.userProfile = null;
-      this.getOut();
+      this.userProfile = null;
       this.router.navigate(['login']);
     });
   }  

@@ -67,9 +67,4 @@ export class CrudService {
     });
   }
 
-  getOut() {
-    this.userProfile = null;        
-    this.userEvent = null;
-  }
-
 }

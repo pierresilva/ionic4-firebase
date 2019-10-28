@@ -27,18 +27,22 @@ export class EventEditPage implements OnInit {
     console.log('Event Edit ionViewWillEnter');
     this.asyncUserEvent();  
   }  
-  ionViewDidEnter() {
-    console.log('Event Edit ionViewDidEnter');
-    this.asyncUserEvent();
-  }  
+
+  // ionViewDidEnter() {
+  //   console.log('Event Edit ionViewDidEnter');
+  //   this.asyncUserEvent();
+  // }
+
   ionViewWillLeave() {
     console.log('Event Edit ionViewWillLeave');
-  }  
-  ionViewDidLeave() {
-    console.log('Event Edit ionViewDidLeave');
   }
 
+  // ionViewDidLeave() {
+  //   console.log('Event Edit ionViewDidLeave');
+  // }
+
   ngOnInit() {
+    console.log('Event Edit ngOnInit');
     this.asyncUserEvent();
   }
 
