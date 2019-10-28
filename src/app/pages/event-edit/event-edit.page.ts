@@ -25,17 +25,17 @@ export class EventEditPage implements OnInit {
   ) {}
 
   ionViewWillEnter() {
-    console.log('Event Edit ionViewWillEnter');
+    console.log("Event Edit ionViewWillEnter");
     this.asyncUserEvent();  
   }  
 
   ionViewWillLeave() {
-    console.log('Event Edit ionViewWillLeave');
+    console.log("Event Edit ionViewWillLeave");
     this.userEvent = null;
   }
 
   ngOnInit() {
-    console.log('Event Edit ngOnInit');
+    console.log("Event Edit ngOnInit");
     this.asyncUserEvent();
   }
 
@@ -90,15 +90,7 @@ export class EventEditPage implements OnInit {
     eventName: string, 
     eventPrice: string,
     eventDate: Date,
-    eventDesc: string): void {
-    /*If you want to add a control, you can open this control below  
-    if (eventName === undefined || 
-        eventPrice === undefined ||
-        eventDate === undefined || 
-        eventDesc === undefined) {
-      return;
-    }
-    */      
+    eventDesc: string): void {      
     this.crudService.saveUserEvent(eventName, eventPrice, eventDate, eventDesc)
       .then(() => {
         this.confirmAlert();

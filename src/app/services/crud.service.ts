@@ -12,6 +12,7 @@ export class CrudService {
   public userID: string;
   public userProfile: firebase.firestore.DocumentReference;
   public userEvent: firebase.firestore.DocumentReference;
+  public EventList: firebase.firestore.CollectionReference;
 
   constructor() {
     firebase.auth().onAuthStateChanged(user => {
@@ -19,6 +20,7 @@ export class CrudService {
         this.userID = user.uid;
         this.userProfile = this.db.collection("userProfile").doc(`${this.userID}`);        
         this.userEvent = this.db.collection("userEvent").doc(`${this.userID}`);
+        this.EventList = this.db.collection("userEvent");
       }
     });
   }
@@ -55,6 +57,10 @@ export class CrudService {
   getUserEvent(): firebase.firestore.DocumentReference {
     if(!this.userID) return;
     return this.userEvent;
+  }
+
+  getEventList(): firebase.firestore.CollectionReference {
+    return this.EventList;
   }
 
   deleteUserEvent() {

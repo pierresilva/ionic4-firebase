@@ -4,6 +4,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding fullscreen common-parallax [scrollEvents]="true">
+  
+  <ion-card>  
+  <ion-list>
+    <ion-list-header>
+      <div class="header">Recent Events</div>
+    </ion-list-header>
+
+    <ion-item *ngFor="let event of eventList" color="secondary">
+      <ion-avatar slot="start">
+          <img src="assets/images/buzul5.png">
+      </ion-avatar>
+      
+      <ion-label>
+        <p><span>Name: </span>  <strong>{{ event?.eventName }}</strong></p>
+        <p><span>Price: </span> <strong>{{ event?.eventPrice }}</strong></p>
+        <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
+        <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  </ion-card>
 
 </ion-content>

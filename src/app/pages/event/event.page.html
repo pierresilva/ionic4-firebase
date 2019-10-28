@@ -11,11 +11,6 @@
       <ion-card-title color="primary">Event Page</ion-card-title>
     </ion-card-header>
 
-    <!-- eventName: string,
-    eventPrice: string,
-    eventDate: Date,
-    eventDesc: string -->
-
     <div *ngIf="userEvent?.eventName==null; then thenNameNull; else elseName"></div>
     <ng-template #thenNameNull>
       <ion-item color="secondary">

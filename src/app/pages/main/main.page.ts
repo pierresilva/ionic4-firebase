@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service'
 export class MainPage implements OnInit {
 
   public userProfile: any;
+  public eventList: Array<any>;
 
   constructor(
     private router: Router,
@@ -20,7 +21,7 @@ export class MainPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.asyncUserProfile();
+    this.asyncEventList();
   }
 
   asyncUserProfile() {
@@ -36,6 +37,31 @@ export class MainPage implements OnInit {
         });
       }, 10);
     });
-  }  
+  }
+
+  asyncEventList() {
+    return new Promise((resolve, reject) => {
+      setTimeout(()=> {
+        this.crudService.getEventList().get().then(eventListSnapshot => {
+          console.log("Home eventListSnapshot", eventListSnapshot);
+          if (eventListSnapshot.size > 0) {
+            this.eventList = [];
+            eventListSnapshot.forEach(snap => {
+              console.log("Home snap", snap.data());
+              this.eventList.push({
+                eventName: snap.data().eventName,
+                eventPrice: snap.data().eventPrice,
+                eventDate: snap.data().eventDate,
+                eventDesc: snap.data().eventDesc
+              });
+            });
+            resolve(true);
+          } else {
+            reject('Error: Data has not arrived yet!');
+          }          
+        });
+      }, 10);
+    });
+  }
 
 }

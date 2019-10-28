@@ -9,13 +9,13 @@
 
   <form [formGroup]="resetForm" class="form" (submit)="resetFirebase()" novalidate>
 
+    <ng-template [ngIf]="!resetForm.controls.email.valid  && (resetForm.controls.email.dirty || resetForm.controls.email.touched)">
+      <p class="alert">Your email is not valid!</p>
+    </ng-template>
+
     <ion-item lines="none" class="item">
       <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!resetForm.controls.email.valid && (resetForm.controls.email.dirty || resetForm.controls.email.touched)"></ion-input>
     </ion-item>
-        
-    <div class="" *ngIf="!resetForm.controls.email.valid  && resetForm.controls.email.dirty">
-      <p class="alert">Your email is not valid!</p>
-    </div>
 
     <br>
 

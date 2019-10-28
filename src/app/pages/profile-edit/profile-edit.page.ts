@@ -34,17 +34,17 @@ export class ProfileEditPage implements OnInit {
   ) {}
 
   ionViewWillEnter() {
-    console.log('Profile Edit ionViewWillEnter');
+    console.log("Profile Edit ionViewWillEnter");
     this.asyncUserProfile();  
   }  
 
   ionViewWillLeave() {
-    console.log('Profile Edit ionViewWillLeave');
+    console.log("Profile Edit ionViewWillLeave");
     this.userProfile = null;
   }
 
   ngOnInit() {
-    console.log('Profile Edit ngOnInit');
+    console.log("Profile Edit ngOnInit");
     this.asyncUserProfile();
 
     this.countrycodesService.getPhoneCodes().subscribe(codes => {
@@ -118,17 +118,6 @@ export class ProfileEditPage implements OnInit {
     website: string, 
     sharePhone: boolean,
     shareWebsite: boolean): void {
-    /*If you want to add a control, you can open this control below  
-    if (fullName === undefined || 
-        gender === undefined ||
-        birthDate === undefined || 
-        skill === undefined ||
-        countryCode === undefined || 
-        phoneNumber === undefined || 
-        website === undefined) {
-      return;
-    }
-    */
     this.crudService.saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)
       .then(() => {
         this.confirmAlert();
