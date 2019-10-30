@@ -15,13 +15,13 @@
     <ng-template #thenNameNull>
       <ion-item color="secondary">
         <ion-icon name="clipboard" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elseName>
       <ion-item color="secondary">
         <ion-icon name="clipboard" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userEvent?.eventName }}</ion-label>
+        <ion-label color="light">{{ userEvent?.eventName }}</ion-label>
       </ion-item>
     </ng-template>   
     
@@ -29,13 +29,13 @@
     <ng-template #thenPriceNull>
       <ion-item color="secondary">
         <ion-icon name="pricetag" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elsePrice>
       <ion-item color="secondary">
         <ion-icon name="pricetag" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userEvent?.eventPrice }}</ion-label>
+        <ion-label color="light">{{ userEvent?.eventPrice }}</ion-label>
       </ion-item>
     </ng-template>   
     
@@ -43,13 +43,13 @@
     <ng-template #thenDateNull>
       <ion-item color="secondary">
         <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elseDate>
       <ion-item color="secondary">
         <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userEvent?.eventDate | date : 'dd MMM yyyy' }}</ion-label>
+        <ion-label color="light">{{ userEvent?.eventDate | date : 'dd MMM yyyy' }}</ion-label>
       </ion-item>
     </ng-template>    
 
@@ -57,13 +57,13 @@
     <ng-template #thenDescNull>
       <ion-item color="secondary">
         <ion-icon name="book" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elseDesc>
       <ion-item color="secondary">
         <ion-icon name="book" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userEvent?.eventDesc }}</ion-label>
+        <ion-label color="light">{{ userEvent?.eventDesc }}</ion-label>
       </ion-item>
     </ng-template>     
  

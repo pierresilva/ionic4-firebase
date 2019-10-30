@@ -12,7 +12,40 @@
       <div class="header">Recent Events</div>
     </ion-list-header>
 
-    <ion-item *ngFor="let event of eventList" color="secondary">
+    <div *ngIf="eventCheck==false; then thenMainNull; else elseMain"></div>
+    <ng-template #thenMainNull>
+      <ion-item color="secondary">
+        <ion-avatar slot="start">
+            <img src="assets/images/buzul5.png">
+        </ion-avatar>
+        
+        <ion-label>
+          <p><span>Name: </span>  <strong>Undefined</strong></p>
+          <p><span>Price: </span> <strong>Undefined</strong></p>
+          <p><span>Date: </span> <strong>Undefined</strong></p>
+          <p><span>Description: </span> <strong>Undefined</strong></p>
+        </ion-label>
+      </ion-item>
+    </ng-template>
+    <ng-template #elseMain>
+      <ion-item *ngFor="let event of eventList" color="secondary">
+        <ion-avatar slot="start">
+            <img src="assets/images/buzul5.png">
+        </ion-avatar>
+        
+        <ion-label>
+          <p><span>ID: </span>  <strong>{{ event?.id }}</strong></p>
+          <p><span>Name: </span>  <strong>{{ event?.eventName }}</strong></p>
+          <p><span>Price: </span> <strong>{{ event?.eventPrice }}</strong></p>
+          <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
+          <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
+        </ion-label>
+      </ion-item>
+    </ng-template> 
+
+
+
+    <!-- <ion-item *ngFor="let event of eventList" color="secondary">
       <ion-avatar slot="start">
           <img src="assets/images/buzul5.png">
       </ion-avatar>
@@ -23,7 +56,7 @@
         <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
         <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
       </ion-label>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
   </ion-card>
 

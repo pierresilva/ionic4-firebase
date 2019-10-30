@@ -12,27 +12,34 @@
 <ion-content padding fullscreen common-parallax [scrollEvents]="true">        
   <ion-card>
     <img src="assets/images/avatar2.jpg">
+    <!-- Name -->
     <ion-card-header color="secondary">
-      <ion-card-title color="primary">{{ userProfile?.fullName }}</ion-card-title>
+      <div *ngIf="userProfile?.fullName==null; then thenNameNull; else elseName"></div>
+      <ng-template #thenNameNull>
+        <ion-card-title color="primary">Undefined</ion-card-title>
+      </ng-template>
+      <ng-template #elseName>
+        <ion-card-title color="primary">{{ userProfile?.fullName }}</ion-card-title>
+      </ng-template>      
     </ion-card-header>
     
     <!-- Gender -->
     <ng-template [ngIf]="userProfile?.gender=='M'">
       <ion-item color="secondary">
         <ion-icon name="male" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Male</ion-label>
+        <ion-label color="light">Male</ion-label>
       </ion-item>
     </ng-template>
     <ng-template [ngIf]="userProfile?.gender=='F'">
       <ion-item color="secondary">
         <ion-icon name="female" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Female</ion-label>
+        <ion-label color="light">Female</ion-label>
       </ion-item> 
     </ng-template>
     <ng-template [ngIf]="userProfile?.gender==null">
       <ion-item color="secondary">
         <ion-icon name="contacts" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item> 
     </ng-template> 
 
@@ -41,13 +48,13 @@
     <ng-template #thenDateNull>
       <ion-item color="secondary">
         <ion-icon name="pulse" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Undefined</ion-label>
+        <ion-label color="light">Undefined</ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elseDate>
       <ion-item color="secondary">
         <ion-icon name="pulse" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userProfile?.birthDate | date : 'dd MMM yyyy' }}</ion-label>
+        <ion-label color="light">{{ userProfile?.birthDate | date : 'dd MMM yyyy' }}</ion-label>
       </ion-item>
     </ng-template>
 
@@ -56,43 +63,43 @@
     <ng-template #thenSkillNull>
       <ion-item color="secondary">
           <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
-          <ion-label color="primary">Undefined</ion-label>
+          <ion-label color="light">Undefined</ion-label>
       </ion-item>  
     </ng-template>
     <ng-template #elseSkill>
       <ion-item color="secondary">
         <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userProfile?.skill }}</ion-label>
+        <ion-label color="light">{{ userProfile?.skill }}</ion-label>
       </ion-item>  
     </ng-template>
 
     <!-- Phone -->
-    <div *ngIf="userProfile?.sharePhone==null; then thenPhoneNull; else elsePhone"></div>
+    <div *ngIf="userProfile?.sharePhone==false; then thenPhoneNull; else elsePhone"></div>
     <ng-template #thenPhoneNull>
       <ion-item color="secondary">
         <ion-icon name="call" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Private</ion-label>
+        <ion-label color="light">Private</ion-label>
       </ion-item>  
     </ng-template>
     <ng-template #elsePhone>
       <ion-item color="secondary">
         <ion-icon name="call" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userProfile?.countryCode }} {{ userProfile?.phoneNumber }}</ion-label>
+        <ion-label color="light">{{ userProfile?.countryCode }} {{ userProfile?.phoneNumber }}</ion-label>
       </ion-item>  
     </ng-template>
     
     <!-- Website -->
-    <div *ngIf="userProfile?.shareWebsite==null; then thenWebsiteNull; else elseWebsite"></div>
+    <div *ngIf="userProfile?.shareWebsite==false; then thenWebsiteNull; else elseWebsite"></div>
     <ng-template #thenWebsiteNull>
       <ion-item color="secondary">
         <ion-icon name="mail" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">Private</ion-label>
+        <ion-label color="light">Private</ion-label>
       </ion-item>   
     </ng-template>
     <ng-template #elseWebsite>
       <ion-item color="secondary">
         <ion-icon name="mail" slot="start" color="primary"></ion-icon>
-        <ion-label color="primary">{{ userProfile?.email }}</ion-label>
+        <ion-label color="light">{{ userProfile?.website }}</ion-label>
       </ion-item>   
     </ng-template>
   

@@ -51,7 +51,7 @@ export class CrudService {
     eventDesc: string
   ): Promise<any> {
     if(!this.userID) return;
-    return this.userEvent.set({ eventName, eventPrice, eventDate, eventDesc });
+    return this.userEvent.update({ eventName, eventPrice, eventDate, eventDesc });
   }
 
   getUserEvent(): firebase.firestore.DocumentReference {

@@ -19,7 +19,7 @@ export class AuthService {
         this.db.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
           .then(() => {            
             this.currentUser = firebase.auth().currentUser;
-            this.db.collection("userEvent").doc(`${this.currentUser.uid}`) .set({ email: this.currentUser.email, uid: this.currentUser.uid })
+            this.db.collection("userEvent").doc(`${this.currentUser.uid}`) .set({ email })
               .then(() => {
                 console.log("Document successfully written!");
               })

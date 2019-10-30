@@ -13,6 +13,7 @@ export class MainPage implements OnInit {
 
   public userProfile: any;
   public eventList: Array<any>;
+  public eventCheck: boolean = false; 
 
   constructor(
     private router: Router,
@@ -20,7 +21,18 @@ export class MainPage implements OnInit {
     private authService: AuthService 
   ) {}
 
+  ionViewWillEnter() {
+    console.log("Main ionViewWillEnter");
+    this.asyncEventList(); 
+  }  
+  
+  ionViewWillLeave() {
+    console.log("Main ionViewWillLeave");
+    this.eventList = null;
+  }  
+
   ngOnInit() {
+    console.log("Main ngOnInit");
     this.asyncEventList();
   }
 
@@ -49,14 +61,17 @@ export class MainPage implements OnInit {
             eventListSnapshot.forEach(snap => {
               console.log("Home snap", snap.data());
               this.eventList.push({
+                id: snap.id,
                 eventName: snap.data().eventName,
                 eventPrice: snap.data().eventPrice,
                 eventDate: snap.data().eventDate,
                 eventDesc: snap.data().eventDesc
               });
             });
+            this.eventCheck = true;
             resolve(true);
           } else {
+            this.eventCheck = false;
             reject('Error: Data has not arrived yet!');
           }          
         });
