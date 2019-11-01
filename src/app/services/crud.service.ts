@@ -8,11 +8,11 @@ import 'firebase/firestore';
 })
 export class CrudService {
 
-  public db = firebase.firestore();
-  public userID: string;
-  public userProfile: firebase.firestore.DocumentReference;
-  public userEvent: firebase.firestore.DocumentReference;
-  public EventList: firebase.firestore.CollectionReference;
+  private db = firebase.firestore();
+  private userID: string;
+  private userProfile: firebase.firestore.DocumentReference;
+  private userEvent: firebase.firestore.DocumentReference;
+  private EventList: firebase.firestore.CollectionReference;
 
   constructor() {
     firebase.auth().onAuthStateChanged(user => {
