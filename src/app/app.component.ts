@@ -17,6 +17,8 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
 
+  showSplash = true;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -38,6 +40,11 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      setTimeout(()=> {
+        this.showSplash = false;
+      }, 4000);
+
     });
   }
 }
