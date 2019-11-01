@@ -35,18 +35,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'event',
+        path: 'event-edit',
         children: [
           {
             path: '',
-            loadChildren: () => import('../event/event.module').then( m => m.EventPageModule),
+            loadChildren: () => import('../event-edit/event-edit.module').then( m => m.EventEditPageModule),
             canActivate: [GuardService]
-          },
-          {
-            path: 'event-edit',
-            loadChildren: () => import('../event-edit/event-edit.module').then( m => m.EventEditPageModule),            
-            canActivate: [GuardService]
-          }       
+          }    
         ]
       },
       // redirect in
@@ -78,14 +73,8 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: 'event',
-    redirectTo: '/tabs/event',
-    pathMatch: 'full',
-    canActivate: [GuardService]
-  },
-  {
     path: 'event-edit',
-    redirectTo: '/tabs/event/event-edit',
+    redirectTo: '/tabs/event-edit',
     pathMatch: 'full',
     canActivate: [GuardService]
   },  

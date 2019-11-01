@@ -23,7 +23,7 @@ export class MainPage implements OnInit {
 
   ionViewWillEnter() {
     console.log("Main ionViewWillEnter");
-    this.asyncEventList(); 
+    this.getUserEvent(); 
   }  
   
   ionViewWillLeave() {
@@ -33,33 +33,16 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
     console.log("Main ngOnInit");
-    this.asyncEventList();
+    this.getUserEvent();
   }
 
-  asyncUserProfile() {
+  getUserEvent() {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
-        this.crudService.getUserProfile().get().then(userProfileSnapshot => {
-            if (userProfileSnapshot.exists) {
-              this.userProfile = userProfileSnapshot.data();
-              resolve(true);
-            } else {
-              reject('Error: Data has not arrived yet!');
-            }
-        });
-      }, 10);
-    });
-  }
-
-  asyncEventList() {
-    return new Promise((resolve, reject) => {
-      setTimeout(()=> {
-        this.crudService.getEventList().get().then(eventListSnapshot => {
-          console.log("Home eventListSnapshot", eventListSnapshot);
+        this.crudService.getUserEvent().get().then(eventListSnapshot => {
           if (eventListSnapshot.size > 0) {
             this.eventList = [];
             eventListSnapshot.forEach(snap => {
-              console.log("Home snap", snap.data());
               this.eventList.push({
                 id: snap.id,
                 eventName: snap.data().eventName,
@@ -72,10 +55,21 @@ export class MainPage implements OnInit {
             resolve(true);
           } else {
             this.eventCheck = false;
-            reject('Error: Data has not arrived yet!');
+            reject('Event has not found!');
           }          
         });
       }, 10);
+    });
+  }
+
+  deleteUserEvent(id){
+    this.crudService.deleteUserEvent(id)
+    .then(() => {
+      console.log("Document successfully deleted!");
+      this.getUserEvent();
+    }) 
+    .catch(error => {
+      console.error("Error removing document: ", error);
     });
   }
 

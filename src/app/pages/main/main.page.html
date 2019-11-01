@@ -13,12 +13,12 @@
     </ion-list-header>
 
     <div *ngIf="eventCheck==false; then thenMainNull; else elseMain"></div>
+    <!-- Null Template -->
     <ng-template #thenMainNull>
       <ion-item color="secondary">
         <ion-avatar slot="start">
             <img src="assets/images/buzul5.png">
-        </ion-avatar>
-        
+        </ion-avatar>        
         <ion-label>
           <p><span>Name: </span>  <strong>Undefined</strong></p>
           <p><span>Price: </span> <strong>Undefined</strong></p>
@@ -27,12 +27,12 @@
         </ion-label>
       </ion-item>
     </ng-template>
+    <!-- Data Template -->
     <ng-template #elseMain>
       <ion-item *ngFor="let event of eventList" color="secondary">
         <ion-avatar slot="start">
             <img src="assets/images/buzul5.png">
-        </ion-avatar>
-        
+        </ion-avatar>        
         <ion-label>
           <p><span>ID: </span>  <strong>{{ event?.id }}</strong></p>
           <p><span>Name: </span>  <strong>{{ event?.eventName }}</strong></p>
@@ -40,23 +40,12 @@
           <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
           <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
         </ion-label>
+        <ion-button fill="clear" (click)="deleteUserEvent(event?.id)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
       </ion-item>
     </ng-template> 
 
-
-
-    <!-- <ion-item *ngFor="let event of eventList" color="secondary">
-      <ion-avatar slot="start">
-          <img src="assets/images/buzul5.png">
-      </ion-avatar>
-      
-      <ion-label>
-        <p><span>Name: </span>  <strong>{{ event?.eventName }}</strong></p>
-        <p><span>Price: </span> <strong>{{ event?.eventPrice }}</strong></p>
-        <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
-        <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
-      </ion-label>
-    </ion-item> -->
   </ion-list>
   </ion-card>
 

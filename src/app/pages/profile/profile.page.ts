@@ -21,7 +21,7 @@ export class ProfilePage implements OnInit {
 
   ionViewWillEnter() {
     console.log("Profile ionViewWillEnter");
-    this.asyncUserProfile();  
+    this.getUserProfile();  
   }  
   
   ionViewWillLeave() {
@@ -31,10 +31,10 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     console.log("Profile ngOnInit");
-    this.asyncUserProfile();
+    this.getUserProfile();
   }
 
-  asyncUserProfile() {
+  getUserProfile() {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
@@ -42,7 +42,7 @@ export class ProfilePage implements OnInit {
               this.userProfile = userProfileSnapshot.data();
               resolve(true);
             } else {
-              reject('Error: Data has not arrived yet!');
+              reject('User has not found!');
             }
         });
       }, 10);

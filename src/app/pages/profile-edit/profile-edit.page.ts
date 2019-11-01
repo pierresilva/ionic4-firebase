@@ -35,7 +35,7 @@ export class ProfileEditPage implements OnInit {
 
   ionViewWillEnter() {
     console.log("Profile Edit ionViewWillEnter");
-    this.asyncUserProfile();  
+    this.getUserProfile();  
   }  
 
   ionViewWillLeave() {
@@ -45,14 +45,14 @@ export class ProfileEditPage implements OnInit {
 
   ngOnInit() {
     console.log("Profile Edit ngOnInit");
-    this.asyncUserProfile();
+    this.getUserProfile();
 
     this.countrycodesService.getPhoneCodes().subscribe(codes => {
       this.countryCodes = codes;
     });    
   }
 
-  asyncUserProfile() {
+  getUserProfile() {
     return new Promise((resolve, reject) => {
       setTimeout(()=> {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
@@ -72,7 +72,9 @@ export class ProfileEditPage implements OnInit {
                 this.shareWebsite = this.userProfile.shareWebsite;
                 }
               resolve(true);
-            } 
+            } else {
+              reject('User has not found!');
+            }
         });
       }, 10);
     });
@@ -122,9 +124,8 @@ export class ProfileEditPage implements OnInit {
       .then(() => {
         this.confirmAlert();
       }) 
-      .catch(error => {
+      .catch(() => {
         this.ctrlAlert();
-        console.error("Not saved successfully", error);
       });
   }
   

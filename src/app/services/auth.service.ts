@@ -8,7 +8,7 @@ import 'firebase/firestore';
 })
 export class AuthService {
 
-  private db = firebase.firestore();
+  public db = firebase.firestore();
   public currentUser: firebase.User;
 
   constructor() {}
@@ -18,21 +18,10 @@ export class AuthService {
       .then((credential: firebase.auth.UserCredential) => {
         this.db.collection("userProfile").doc(`${credential.user.uid}`).set({ email })
           .then(() => {            
-            this.currentUser = firebase.auth().currentUser;
-            this.db.collection("userEvent").doc(`${this.currentUser.uid}`) .set({ email })
-              .then(() => {
-                console.log("Document successfully written!");
-              })
-              .catch(error => {
-                console.error("Error writing userEvent: ", error);
-              });            
-          })
-          .catch(error => {
-            console.error("Error writing userProfile: ", error);
+            this.currentUser = firebase.auth().currentUser;          
           });
       })
       .catch(error => {        
-        console.error("Register Error: ", error);
         throw new Error(error);
       });
   }  
@@ -40,7 +29,6 @@ export class AuthService {
   login(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(error => {
-        console.error("Login Error: ", error);
         throw new Error(error);
     });
   }
@@ -51,7 +39,6 @@ export class AuthService {
         console.log("Reset email successfully sent");
       })
       .catch(error => {        
-        console.error("Reset Error!: ", error);
         throw new Error(error);
       });
   }  

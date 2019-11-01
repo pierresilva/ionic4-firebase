@@ -8,19 +8,17 @@ import 'firebase/firestore';
 })
 export class CrudService {
 
-  private db = firebase.firestore();
-  private userID: string;
-  private userProfile: firebase.firestore.DocumentReference;
-  private userEvent: firebase.firestore.DocumentReference;
-  private EventList: firebase.firestore.CollectionReference;
+  public db = firebase.firestore();
+  public userID: string;
+  public userProfile: firebase.firestore.DocumentReference;
+  public userEvent: firebase.firestore.CollectionReference;
 
   constructor() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userID = user.uid;
         this.userProfile = this.db.collection("userProfile").doc(`${this.userID}`);        
-        this.userEvent = this.db.collection("userEvent").doc(`${this.userID}`);
-        this.EventList = this.db.collection("userEvent");
+        this.userEvent = this.db.collection("userEvent");
       }
     });
   }
@@ -44,33 +42,24 @@ export class CrudService {
     return this.userProfile.update({ fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite });
   }  
 
-  saveUserEvent(
+  getUserEvent(): firebase.firestore.CollectionReference {
+    if(!this.userID) return;
+    return this.userEvent;
+  }  
+
+  addUserEvent(
     eventName: string,
     eventPrice: string,
     eventDate: Date,
     eventDesc: string
   ): Promise<any> {
     if(!this.userID) return;
-    return this.userEvent.update({ eventName, eventPrice, eventDate, eventDesc });
+    return this.userEvent.add({ eventName, eventPrice, eventDate, eventDesc });
   }
 
-  getUserEvent(): firebase.firestore.DocumentReference {
+  deleteUserEvent(id) {
     if(!this.userID) return;
-    return this.userEvent;
-  }
-
-  getEventList(): firebase.firestore.CollectionReference {
-    return this.EventList;
-  }
-
-  deleteUserEvent() {
-    if(!this.userID) return;
-    this.db.collection("userEvent").doc(`${this.userID}`).delete().then(() => {
-      console.log("Event successfully deleted!");
-    })
-    .catch(error => {  
-      console.error("Event delete error!", error);
-    });
+    return this.userEvent.doc(id).delete();
   }
 
 }
