@@ -1,6 +1,6 @@
 <ion-content>
 
-  <div class="logo">
+  <div class="">
     <img src="assets/images/buzul5.png">
     <h1>Buzul</h1>
   </div>
@@ -17,23 +17,25 @@
     </ng-template>
 
     <ion-item lines="none" class="item">
+      <ion-icon name="mail" slot="start" color="tertiary"></ion-icon>
       <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
     </ion-item>
 
     <ion-item lines="none" margin-top class="item">
+      <ion-icon name="lock" slot="start" color="tertiary"></ion-icon>
       <ion-input formControlName="password" type="password" placeholder="Enter Password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
     </ion-item>
 
     <br>
 
-    <ion-button expand="block" fill="solid" size="small" class="login" color="secondary" type="submit" [disabled]="!loginForm.valid">LOGIN</ion-button>
+    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!loginForm.valid">LOGIN</ion-button>
   </form>  
 
   <hr>
 
   <div class="">
-    <ion-button fill="clear" size="small" class="router" color="secondary" (click)="goRegisterPage()">REGISTER</ion-button>    
-    <ion-button fill="clear" size="small" class="router" color="secondary" (click)="goForgotPage()">FORGOT PASSWORD</ion-button>
+    <ion-button fill="clear" size="small" color="secondary" (click)="goRegisterPage()">REGISTER</ion-button>    
+    <ion-button fill="clear" size="small" color="secondary" (click)="goForgotPage()">FORGOT PASSWORD</ion-button>
   </div>  
 
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>  
-    <ion-title color="light" text-center>Event Edit</ion-title>
+    <ion-title color="light" text-center>Add Event</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,9 @@
 
     <hr/>
     <ion-card color="secondary">
-      <ion-list class="list" lines="none">
+      <img src="assets/images/avatar3.jpg">
+      <hr>
+      <ion-list lines="none">
         <ion-item color="secondary">
           <ion-label class="label">Name</ion-label>
           <ion-input placeholder="Enter Event Name" [(ngModel)]="eventName" text-right></ion-input>
@@ -34,7 +36,7 @@
     <hr/>
       
     <div class="">
-      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="addUserEvent(eventName, eventPrice, eventDate, eventDesc)">ADD</ion-button>
+      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="addUserEvent(eventName, eventPrice, eventDate, eventDesc)">ADD EVENT</ion-button>
     </div>
 
 </ion-content>

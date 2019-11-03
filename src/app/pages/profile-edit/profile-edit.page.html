@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back"color="light"></ion-icon>
       </ion-button>
     </ion-buttons>    
-    <ion-title color="light" text-center>Profile Edit</ion-title>
+    <ion-title color="light" text-center>Edit Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -64,12 +64,12 @@
       
       <ion-list lines="none">
         <ion-item color="secondary">
-          <ion-label color="primary">Share Phone <ion-icon name="ios-mail"></ion-icon></ion-label>
+          <ion-label color="primary">Share Phone</ion-label>
           <ion-toggle [(ngModel)]="sharePhone"></ion-toggle>
         </ion-item>
 
         <ion-item color="secondary">
-          <ion-label color="primary">Share Website <ion-icon name="ios-mail"></ion-icon></ion-label>
+          <ion-label color="primary">Share Website</ion-label>
           <ion-toggle [(ngModel)]="shareWebsite"></ion-toggle>
         </ion-item>
       </ion-list>
@@ -78,7 +78,7 @@
     <hr/>
       
     <div class="">
-      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)">SAVE</ion-button>
+      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)">SAVE PROFILE</ion-button>
     </div>
 
 </ion-content>

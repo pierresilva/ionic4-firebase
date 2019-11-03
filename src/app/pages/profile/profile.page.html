@@ -74,11 +74,11 @@
     </ng-template>
 
     <!-- Phone -->
-    <div *ngIf="userProfile?.sharePhone==false; then thenPhoneNull; else elsePhone"></div>
+    <div *ngIf="userProfile?.sharePhone==null; then thenPhoneNull; else elsePhone"></div>
     <ng-template #thenPhoneNull>
       <ion-item color="secondary">
         <ion-icon name="call" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Private</ion-label>
+        <ion-label color="light">Private or Public?</ion-label>
       </ion-item>  
     </ng-template>
     <ng-template #elsePhone>
@@ -89,16 +89,16 @@
     </ng-template>
     
     <!-- Website -->
-    <div *ngIf="userProfile?.shareWebsite==false; then thenWebsiteNull; else elseWebsite"></div>
+    <div *ngIf="userProfile?.shareWebsite==null; then thenWebsiteNull; else elseWebsite"></div>
     <ng-template #thenWebsiteNull>
       <ion-item color="secondary">
-        <ion-icon name="mail" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Private</ion-label>
+        <ion-icon name="at" slot="start" color="primary"></ion-icon>
+        <ion-label color="light">Private or Public?</ion-label>
       </ion-item>   
     </ng-template>
     <ng-template #elseWebsite>
       <ion-item color="secondary">
-        <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+        <ion-icon name="at" slot="start" color="primary"></ion-icon>
         <ion-label color="light">{{ userProfile?.website }}</ion-label>
       </ion-item>   
     </ng-template>
@@ -106,7 +106,7 @@
   </ion-card>  
 
   <div class="">
-      <ion-button expand="block" fill="solid" size="small" class="save" color="secondary" (click)="goEdit()">EDIT</ion-button>
+      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="goEdit()">EDIT PROFILE</ion-button>
   </div>    
 
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-content>
 
-  <div class="logo">
+  <div class="">
     <img src="assets/images/buzul5.png">
     <h1>Buzul</h1>
   </div>
@@ -14,18 +14,19 @@
     </ng-template>
 
     <ion-item lines="none" class="item">
+      <ion-icon name="mail" slot="start" color="tertiary"></ion-icon>
       <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!resetForm.controls.email.valid && (resetForm.controls.email.dirty || resetForm.controls.email.touched)"></ion-input>
     </ion-item>
 
     <br>
 
-    <ion-button expand="block" fill="solid" size="small" class="forgot" color="secondary" type="submit" [disabled]="!resetForm.valid">RESET PASSWORD</ion-button>
+    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!resetForm.valid">RESET PASSWORD</ion-button>
   </form>
 
   <hr>
 
   <div class="">
-    <ion-button fill="clear" size="small" class="router" color="secondary" (click)="goLoginPage()">LOGIN</ion-button>
+    <ion-button fill="clear" size="small" color="secondary" (click)="goLoginPage()">LOGIN</ion-button>
   </div>
 
 </ion-content>

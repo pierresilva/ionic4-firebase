@@ -19,7 +19,7 @@
         <ion-avatar slot="start">
             <img src="assets/images/buzul5.png">
         </ion-avatar>        
-        <ion-label>
+        <ion-label>          
           <p><span>Name: </span>  <strong>Undefined</strong></p>
           <p><span>Price: </span> <strong>Undefined</strong></p>
           <p><span>Date: </span> <strong>Undefined</strong></p>
@@ -33,9 +33,8 @@
         <ion-avatar slot="start">
             <img src="assets/images/buzul5.png">
         </ion-avatar>        
-        <ion-label>
-          <p><span>ID: </span>  <strong>{{ event?.id }}</strong></p>
-          <p><span>Name: </span>  <strong>{{ event?.eventName }}</strong></p>
+        <ion-label>        
+          <p><span>Name: </span> <strong>{{ event?.eventName }}</strong></p>
           <p><span>Price: </span> <strong>{{ event?.eventPrice }}</strong></p>
           <p><span>Date: </span> <strong>{{ event?.eventDate | date : 'dd MMM yyyy' }}</strong></p>
           <p><span>Description: </span> <strong>{{ event?.eventDesc }}</strong></p>
