@@ -82,7 +82,7 @@ export class ProfileEditPage implements OnInit {
 
   async confirmAlert() {
     const alert = await this.alertCtrl.create({
-      message: 'CRUD Successfully saved!',
+      message: 'Profile Successfully saved!',
       buttons: [
         {
           text: 'Saved',

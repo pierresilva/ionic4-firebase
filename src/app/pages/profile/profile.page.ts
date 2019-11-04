@@ -40,6 +40,7 @@ export class ProfilePage implements OnInit {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
             if (userProfileSnapshot.exists) {
               this.userProfile = userProfileSnapshot.data();
+              console.log("profile data:", this.userProfile)
               resolve(true);
             } else {
               reject('User has not found!');
