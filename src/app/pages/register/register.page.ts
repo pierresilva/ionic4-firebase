@@ -25,7 +25,7 @@ export class RegisterPage implements OnInit {
   {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+      password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])]
     });
   }
 
@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
 
   async ctrlLoading() {
     this.loading = await this.loadingCtrl.create({
-      message: 'loading',
+      message: 'Loading',
       duration: 3000
     });
     return await this.loading.present();
@@ -56,7 +56,7 @@ export class RegisterPage implements OnInit {
 
   async confirmAlert() {
     const alert = await this.alertCtrl.create({
-      message: 'You have Successfully registered!',
+      message: 'Registered successfully!',
       buttons: [
         {
           text: 'Cancel',
@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
           }
         },
         {
-          text: 'Join Now',
+          text: 'Home Page',
           handler: () => {
           this.router.navigate(['']);
           }

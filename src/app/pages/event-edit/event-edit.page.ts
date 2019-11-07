@@ -12,7 +12,6 @@ import { CrudService } from '../../services/crud.service';
 })
 export class EventEditPage implements OnInit {
   
-  public userEvent: any;
   public eventName: string;
   public eventPrice: string;
   public eventDate: Date;
@@ -30,6 +29,10 @@ export class EventEditPage implements OnInit {
 
   ionViewWillLeave() {
     console.log("Event Edit ionViewWillLeave");
+    this.eventName = null;
+    this.eventPrice = null;
+    this.eventDate = null;
+    this.eventDesc = null;
   }
 
   ngOnInit() {

@@ -9,11 +9,11 @@
 
   <form [formGroup]="loginForm" class="form" (submit)="loginFirebase()" novalidate>
 
-    <ng-template [ngIf]="!loginForm.controls.email.valid  && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
+    <ng-template [ngIf]="!loginForm.controls.email.valid  && (loginForm.controls.email.dirty && loginForm.controls.email.touched)">
       <p class="alert">Your email is not valid!</p>
     </ng-template>
-    <ng-template [ngIf]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || loginForm.controls.email.touched)">
-      <p class="alert">Please enter more than 6 characters.</p>
+    <ng-template [ngIf]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty && loginForm.controls.email.touched)">
+      <p class="alert">Your password must be 8-12 characters!</p>
     </ng-template>
 
     <ion-item lines="none" class="item">

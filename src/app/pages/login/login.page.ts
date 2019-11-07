@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+      password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])]
     });
   }
 
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
   async ctrlLoading() {
     this.loading = await this.loadingCtrl.create({
-      message: 'loading',
+      message: 'Loading',
       duration: 3000
     });
     return await this.loading.present();
