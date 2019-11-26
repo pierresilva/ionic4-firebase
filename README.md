@@ -1,5 +1,4 @@
-# Online Documentation
-https://cacacode.gitbook.io/buzul/
+# Ionic 4 firebase: Android, iOS, PWA
 
 # Online Demo
-http://cagatayucer.com/projects/buzul/index.html
+http://testingup-e2023.web.app
