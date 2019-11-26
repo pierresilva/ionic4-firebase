@@ -2,7 +2,7 @@
 
   <div class="">
     <img src="assets/images/buzul5.png">
-    <h1>Buzul</h1>
+    <h1>SUINTER</h1>
   </div>
 
   <br>
@@ -10,23 +10,23 @@
   <form [formGroup]="resetForm" class="form" (submit)="resetFirebase()" novalidate>
 
     <ng-template [ngIf]="!resetForm.controls.email.valid  && (resetForm.controls.email.dirty || resetForm.controls.email.touched)">
-      <p class="alert">Your email is not valid!</p>
+      <p class="alert">Email no valido!</p>
     </ng-template>
 
     <ion-item lines="none" class="item">
       <ion-icon name="mail" slot="start" color="tertiary"></ion-icon>
-      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!resetForm.controls.email.valid && (resetForm.controls.email.dirty || resetForm.controls.email.touched)"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="Correo electrónico" [class.invalid]="!resetForm.controls.email.valid && (resetForm.controls.email.dirty || resetForm.controls.email.touched)"></ion-input>
     </ion-item>
 
     <br>
 
-    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!resetForm.valid">RESET PASSWORD</ion-button>
+    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!resetForm.valid">RECUPERAR CLAVE</ion-button>
   </form>
 
   <hr>
 
   <div class="">
-    <ion-button fill="clear" size="small" color="secondary" (click)="goLoginPage()">LOGIN</ion-button>
+    <ion-button fill="clear" size="small" color="secondary" (click)="goLoginPage()">INGRESAR</ion-button>
   </div>
 
 </ion-content>

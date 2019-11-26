@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back"color="light"></ion-icon>
       </ion-button>
     </ion-buttons>    
-    <ion-title color="light" text-center>Edit Profile</ion-title>
+    <ion-title color="light" text-center>Editar perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,70 +15,36 @@
     <ion-card color="secondary">
       <ion-list lines="none">
         <ion-item color="secondary">
-          <ion-label class="label">Full Name</ion-label>
-          <ion-input placeholder="Enter Full Name" [(ngModel)]="fullName" text-right></ion-input>
+          <ion-label class="label">Nombre</ion-label>
+          <ion-input placeholder="Ingrese su nombre" [(ngModel)]="fullName" text-right></ion-input>
         </ion-item>  
 
         <ion-item color="secondary">
-          <ion-label class="label">Gender</ion-label>
-          <ion-select placeholder="Select Gender" [(ngModel)]="gender">
-            <ion-select-option value="M">Male</ion-select-option>
-            <ion-select-option value="F">Female</ion-select-option>
+          <ion-label class="label">Genero</ion-label>
+          <ion-select placeholder="Seleccione su genero" [(ngModel)]="gender">
+            <ion-select-option value="M">Masculino</ion-select-option>
+            <ion-select-option value="F">Femenino</ion-select-option>
           </ion-select>
         </ion-item>  
 
         <ion-item color="secondary">
-          <ion-label class="label">Date of Birth</ion-label>
-          <ion-datetime placeholder="Select Date" [(ngModel)]="birthDate"></ion-datetime>
+          <ion-label class="label">Fecha de nacimiento</ion-label>
+          <ion-datetime placeholder="Seleccione una fecha" [(ngModel)]="birthDate"></ion-datetime>
         </ion-item>      
-    
-        <ion-item color="secondary">
-          <ion-label class="label">Skills</ion-label>
-            <ion-select placeholder="Select Skills" multiple="true" cancel-text="Cancel" ok-text="Ok!" [(ngModel)]="skill">{{userProfile?.skill}}
-            <ion-select-option value="Art">Art</ion-select-option>
-            <ion-select-option value="Dance">Dance</ion-select-option>
-            <ion-select-option value="Sport">Music</ion-select-option>
-            <ion-select-option value="Game">Game</ion-select-option>
-            <ion-select-option value="Design">Design</ion-select-option>
-          </ion-select>
-        </ion-item>   
-
-        <ion-item color="secondary">
-          <ion-label class="label">Country Code</ion-label>
-          <ion-select placeholder="Select Code" [(ngModel)]="countryCode">
-            <ion-select-option *ngFor="let code of countryCodes" [value]="code.dial_code">{{ code.name + " " + code.dial_code}}</ion-select-option>
-          </ion-select>
-        </ion-item>  
         
         <ion-item color="secondary">
-          <ion-label class="label">Phone Number</ion-label>
-          <ion-input placeholder="Enter Phone" [(ngModel)]="phoneNumber" text-right></ion-input>
+          <ion-label class="label">Teléfono</ion-label>
+          <ion-input placeholder="Ingrese su número telefónico" [(ngModel)]="phoneNumber" text-right></ion-input>
         </ion-item>       
 
-        <ion-item color="secondary">
-          <ion-label class="label">Website</ion-label>
-          <ion-input placeholder="Enter Website" [(ngModel)]="website" text-right></ion-input>
-        </ion-item>
       </ion-list>  
       
-      
-      <ion-list lines="none">
-        <ion-item color="secondary">
-          <ion-label color="primary">Share Phone</ion-label>
-          <ion-toggle [(ngModel)]="sharePhone"></ion-toggle>
-        </ion-item>
-
-        <ion-item color="secondary">
-          <ion-label color="primary">Share Website</ion-label>
-          <ion-toggle [(ngModel)]="shareWebsite"></ion-toggle>
-        </ion-item>
-      </ion-list>
     </ion-card> 
     <hr/>
     <hr/>
       
     <div class="">
-      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)">SAVE PROFILE</ion-button>
+      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="saveUserProfile(fullName, gender, birthDate, phoneNumber)">GUARDAR</ion-button>
     </div>
 
 </ion-content>

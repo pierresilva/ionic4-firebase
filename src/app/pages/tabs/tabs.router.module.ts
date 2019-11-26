@@ -14,7 +14,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../main/main.module').then( m => m.MainPageModule),
+            loadChildren: () => import('../main/main.module').then(m => m.MainPageModule),
             canActivate: [GuardService]
           }
         ]
@@ -24,14 +24,14 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule),
+            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule),
             canActivate: [GuardService]
           },
           {
             path: 'profile-edit',
-            loadChildren: () => import('../profile-edit/profile-edit.module').then( m => m.ProfileEditPageModule),            
+            loadChildren: () => import('../profile-edit/profile-edit.module').then(m => m.ProfileEditPageModule),
             canActivate: [GuardService]
-          }          
+          }
         ]
       },
       {
@@ -39,15 +39,25 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../event-edit/event-edit.module').then( m => m.EventEditPageModule),
+            loadChildren: () => import('../event-edit/event-edit.module').then(m => m.EventEditPageModule),
             canActivate: [GuardService]
-          }    
+          }
+        ]
+      },
+      {
+        path: 'reports',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../../reports/reports.module').then(m => m.ReportsPageModule),
+            canActivate: [GuardService]
+          }
         ]
       },
       // redirect in
       {
         path: '',
-        redirectTo: '/tabs/main',
+        redirectTo: '/tabs/reports',
         pathMatch: 'full',
         canActivate: [GuardService]
       }
@@ -56,7 +66,7 @@ const routes: Routes = [
   // redirect out
   {
     path: '',
-    redirectTo: '/tabs/main',
+    redirectTo: '/tabs/reports',
     pathMatch: 'full',
     canActivate: [GuardService]
   },
@@ -77,7 +87,7 @@ const routes: Routes = [
     redirectTo: '/tabs/event-edit',
     pathMatch: 'full',
     canActivate: [GuardService]
-  },  
+  },
 ];
 /*
 @NgModule({

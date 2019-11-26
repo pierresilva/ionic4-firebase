@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CrudService } from './../../services/crud.service';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,31 +16,31 @@ export class ProfilePage implements OnInit {
   constructor(
     private router: Router,
     private crudService: CrudService,
-    private authService: AuthService 
+    private authService: AuthService
   ) {}
 
   ionViewWillEnter() {
-    console.log("Profile ionViewWillEnter");
-    this.getUserProfile();  
-  }  
-  
+    console.log('Profile ionViewWillEnter');
+    this.getUserProfile();
+  }
+
   ionViewWillLeave() {
-    console.log("Profile ionViewWillLeave");
+    console.log('Profile ionViewWillLeave');
     this.userProfile = null;
   }
 
   ngOnInit() {
-    console.log("Profile ngOnInit");
+    console.log('Profile ngOnInit');
     this.getUserProfile();
   }
 
   getUserProfile() {
     return new Promise((resolve, reject) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
             if (userProfileSnapshot.exists) {
               this.userProfile = userProfileSnapshot.data();
-              console.log("profile data:", this.userProfile)
+              console.log('profile data:', this.userProfile);
               resolve(true);
             } else {
               reject('User has not found!');
@@ -59,6 +59,6 @@ export class ProfilePage implements OnInit {
       this.userProfile = null;
       this.router.navigate(['login']);
     });
-  }  
+  }
 
 }

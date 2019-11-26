@@ -2,7 +2,7 @@
 
   <div class="">
     <img src="assets/images/buzul5.png">
-    <h1>Buzul</h1>
+    <h1>SUINTER</h1>
   </div>
 
   <br>
@@ -10,32 +10,32 @@
   <form [formGroup]="loginForm" class="form" (submit)="loginFirebase()" novalidate>
 
     <ng-template [ngIf]="!loginForm.controls.email.valid  && (loginForm.controls.email.dirty && loginForm.controls.email.touched)">
-      <p class="alert">Your email is not valid!</p>
+      <p class="alert">Email no valido!</p>
     </ng-template>
     <ng-template [ngIf]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty && loginForm.controls.email.touched)">
-      <p class="alert">Your password must be 8-12 characters!</p>
+      <p class="alert">La clave debe ser de 8-12 caracteres!</p>
     </ng-template>
 
     <ion-item lines="none" class="item">
       <ion-icon name="mail" slot="start" color="tertiary"></ion-icon>
-      <ion-input formControlName="email" type="email" placeholder="Enter Email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="Correo electrónico" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
     </ion-item>
 
     <ion-item lines="none" margin-top class="item">
       <ion-icon name="lock" slot="start" color="tertiary"></ion-icon>
-      <ion-input formControlName="password" type="password" placeholder="Enter Password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+      <ion-input formControlName="password" type="password" placeholder="Clave" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
     </ion-item>
 
     <br>
 
-    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!loginForm.valid">LOGIN</ion-button>
+    <ion-button expand="block" fill="solid" size="small" color="secondary" type="submit" [disabled]="!loginForm.valid">INGRESAR</ion-button>
   </form>  
 
   <hr>
 
   <div class="">
-    <ion-button fill="clear" size="small" color="secondary" (click)="goRegisterPage()">REGISTER</ion-button>    
-    <ion-button fill="clear" size="small" color="secondary" (click)="goForgotPage()">FORGOT PASSWORD</ion-button>
+    <ion-button fill="clear" size="small" color="secondary" (click)="goRegisterPage()">REGISTRARSE</ion-button>    
+    <ion-button fill="clear" size="small" color="secondary" (click)="goForgotPage()">RECUPERAR CLAVE</ion-button>
   </div>  
 
 </ion-content>

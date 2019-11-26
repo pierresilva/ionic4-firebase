@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CrudService } from './../../services/crud.service';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -13,32 +13,32 @@ export class MainPage implements OnInit {
 
   public userProfile: any;
   public eventList: Array<any>;
-  public eventCheck: boolean = false; 
+  public eventCheck = false;
 
   constructor(
     private router: Router,
     private crudService: CrudService,
-    private authService: AuthService 
+    private authService: AuthService
   ) {}
 
   ionViewWillEnter() {
-    console.log("Main ionViewWillEnter");
-    this.getUserEvent(); 
-  }  
-  
+    console.log('Main ionViewWillEnter');
+    this.getUserEvent();
+  }
+
   ionViewWillLeave() {
-    console.log("Main ionViewWillLeave");
+    console.log('Main ionViewWillLeave');
     this.eventList = null;
-  }  
+  }
 
   ngOnInit() {
-    console.log("Main ngOnInit");
+    console.log('Main ngOnInit');
     this.getUserEvent();
   }
 
   getUserEvent() {
     return new Promise((resolve, reject) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         this.crudService.getUserEvent().get().then(eventListSnapshot => {
           if (eventListSnapshot.size > 0) {
             this.eventList = [];
@@ -56,20 +56,20 @@ export class MainPage implements OnInit {
           } else {
             this.eventCheck = false;
             reject('Event has not found!');
-          }          
+          }
         });
       }, 10);
     });
   }
 
-  deleteUserEvent(id){
+  deleteUserEvent(id) {
     this.crudService.deleteUserEvent(id)
     .then(() => {
-      console.log("Document successfully deleted!");
+      console.log('Document successfully deleted!');
       this.getUserEvent();
-    }) 
+    })
     .catch(error => {
-      console.error("Error removing document: ", error);
+      console.error('Error removing document: ', error);
     });
   }
 

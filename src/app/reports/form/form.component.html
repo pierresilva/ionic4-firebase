@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goTo('/tabs/reports')">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        <ion-icon name="save" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light" class="ion-text-center">Crear Reporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" fullscreen common-parallax [scrollEvents]="true">
+  <hr />
+  <ion-card color="secondary">
+    <ion-list lines="none">
+
+      <ion-item color="secondary">
+        <ion-label class="label">Frente</ion-label>
+        <ion-select placeholder="Seleccione..." [(ngModel)]="report.data.front">
+          <ion-select-option value="Ferente Uno">Ferente Uno</ion-select-option>
+          <ion-select-option value="Ferente Dos">Ferente Dos</ion-select-option>
+          <ion-select-option value="Ferente Tres">Ferente Tres</ion-select-option>
+          <ion-select-option value="Ferente Cuatro">Ferente Cuatro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label class="label">Fecha</ion-label>
+        <ion-datetime placeholder="Seleccione una fecha" [(ngModel)]="report.data.date"></ion-datetime>
+      </ion-item>
+
+      <ion-item color="secondary">
+        <ion-label class="label">Comentario</ion-label>
+        <ion-textarea placeholder="ingrese un comentario" rows="3" maxlength="250" [(ngModel)]="report.data.comment"
+          text-right class="input"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+  <hr />
+
+  <ng-container *ngIf="report.data.images.length">
+    <ion-card *ngFor="let item of report.data.images" >
+      <img [src]="item">
+    </ion-card>
+  </ng-container>
+
+  <hr />
+
+  <ion-card text-center *ngIf="!isUploading">
+    <ion-card-content>
+      <div class="fileUpload">
+        <ion-button>Cargar imágen</ion-button>
+        <input
+          id="uploadBtn"
+          type="file"
+          class="upload"
+          accept="image/jpeg" 
+          (change)="uploadFile($event.target.files)"/>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -19,13 +19,12 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,    
+    private alertCtrl: AlertController,
     private authService: AuthService
-  ) 
-  {
+  ) {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])]
+      password: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(12), Validators.required])]
     });
   }
 
@@ -34,7 +33,7 @@ export class RegisterPage implements OnInit {
 
   async ctrlLoading() {
     this.loading = await this.loadingCtrl.create({
-      message: 'Loading',
+      message: 'Cargando...',
       duration: 3000
     });
     return await this.loading.present();
@@ -42,13 +41,13 @@ export class RegisterPage implements OnInit {
 
   async ctrlAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Register failed',
-      message: 'Not registered successfully',
+      header: 'Algo salio mal!',
+      message: 'No se pudo realizar el registro.',
       buttons: [
-            {
-                text: 'Ok',
-                role: 'cancel'
-            }
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
       ]
     });
     await alert.present();
@@ -56,26 +55,26 @@ export class RegisterPage implements OnInit {
 
   async confirmAlert() {
     const alert = await this.alertCtrl.create({
-      message: 'Registered successfully!',
+      message: 'Registro exitoso!',
       buttons: [
+        // {
+        //   text: 'Cancel',
+        //   role: 'cancel',
+        //   cssClass: 'secondary',
+        //   handler: (blah) => {
+        //     console.log("Confirm Cancel:", blah);
+        //   }
+        // },
         {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log("Confirm Cancel:", blah);
-          }
-        },
-        {
-          text: 'Home Page',
+          text: 'OK',
           handler: () => {
-          this.router.navigate(['']);
+            this.router.navigate(['']);
           }
         }
       ]
     });
     await alert.present();
-  }    
+  }
 
   async registerFirebase(): Promise<void> {
     if (!this.registerForm.valid) {
@@ -90,18 +89,18 @@ export class RegisterPage implements OnInit {
             this.confirmAlert();
           });
         })
-        .catch( error => {
+        .catch(error => {
           this.loading.dismiss().then(() => {
             this.ctrlAlert();
             console.error("Not registered successfully: ", error);
           });
-      });
+        });
       this.ctrlLoading();
     }
   }
 
   goLoginPage(): void {
     this.router.navigate(['login']);
-  }  
+  }
 
 }

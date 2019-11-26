@@ -23,114 +23,109 @@ export class ProfileEditPage implements OnInit {
   public countryCode: string;
   public phoneNumber: string;
   public website: string;
-  public sharePhone: boolean = false; 
-  public shareWebsite: boolean = false;  
+  public sharePhone = false;
+  public shareWebsite = false;
 
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
     private countrycodesService: CountrycodesService,
-    private crudService: CrudService    
-  ) {}
+    private crudService: CrudService
+  ) { }
 
   ionViewWillEnter() {
-    console.log("Profile Edit ionViewWillEnter");
-    this.getUserProfile();  
-  }  
+    console.log('Profile Edit ionViewWillEnter');
+    this.getUserProfile();
+  }
 
   ionViewWillLeave() {
-    console.log("Profile Edit ionViewWillLeave");
+    console.log('Profile Edit ionViewWillLeave');
     this.userProfile = null;
   }
 
   ngOnInit() {
-    console.log("Profile Edit ngOnInit");
+    console.log('Profile Edit ngOnInit');
     this.getUserProfile();
 
     this.countrycodesService.getPhoneCodes().subscribe(codes => {
       this.countryCodes = codes;
-    });    
+    });
   }
 
   getUserProfile() {
     return new Promise((resolve, reject) => {
-      setTimeout(()=> {
+      setTimeout(() => {
         this.crudService.getUserProfile().get().then(userProfileSnapshot => {
-            if (userProfileSnapshot.exists) {
-              this.userProfile = userProfileSnapshot.data();
-              this.fullName = this.userProfile.fullName;
-              this.gender = this.userProfile.gender;
-              this.birthDate = this.userProfile.birthDate;
-              this.skill = this.userProfile.skill;
-              this.countryCode = this.userProfile.countryCode;
-              this.phoneNumber = this.userProfile.phoneNumber;
-              this.website = this.userProfile.website;
-              if (this.userProfile.sharePhone !== undefined &&
-                  this.userProfile.shareWebsite !== undefined) 
-                {
-                this.sharePhone = this.userProfile.sharePhone;
-                this.shareWebsite = this.userProfile.shareWebsite;
-                }
-              resolve(true);
-            } else {
-              reject('User has not found!');
+          if (userProfileSnapshot.exists) {
+            this.userProfile = userProfileSnapshot.data();
+            this.fullName = this.userProfile.fullName;
+            this.gender = this.userProfile.gender;
+            this.birthDate = this.userProfile.birthDate;
+            this.skill = this.userProfile.skill;
+            this.countryCode = this.userProfile.countryCode;
+            this.phoneNumber = this.userProfile.phoneNumber;
+            this.website = this.userProfile.website;
+            if (this.userProfile.sharePhone !== undefined &&
+              this.userProfile.shareWebsite !== undefined) {
+              this.sharePhone = this.userProfile.sharePhone;
+              this.shareWebsite = this.userProfile.shareWebsite;
             }
+            resolve(true);
+          } else {
+            reject('User has not found!');
+          }
         });
-      }, 10);
+      }, 100);
     });
-  } 
+  }
 
   async confirmAlert() {
     const alert = await this.alertCtrl.create({
-      message: 'Profile Successfully saved!',
+      message: 'El perfil se guardo con éxito!',
       buttons: [
         {
-          text: 'Saved',
+          text: 'OK',
           handler: () => {
-          this.router.navigate(['profile']);
+            this.router.navigate(['profile']);
           }
         }
       ],
       cssClass: 'alertConfirm'
     });
     await alert.present();
-  }  
+  }
 
   async ctrlAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Save Failed',
-      message: 'Not saved successfully',
+      header: 'Algo salio mal!',
+      message: 'No fue posible guardar el perfil.',
       buttons: [
-            {
-                text: 'Ok',
-                role: 'cancel'
-            }
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
       ]
     });
     await alert.present();
   }
 
   saveUserProfile(
-    fullName: string, 
+    fullName: string,
     gender: string,
     birthDate: Date,
-    skill: string[],
-    countryCode: string,
-    phoneNumber: string,
-    website: string, 
-    sharePhone: boolean,
-    shareWebsite: boolean): void {
-    this.crudService.saveUserProfile(fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite)
+    phoneNumber: string
+  ): void {
+    this.crudService.saveUserProfile(fullName, gender, birthDate, phoneNumber)
       .then(() => {
         this.confirmAlert();
-      }) 
+      })
       .catch(() => {
         this.ctrlAlert();
       });
   }
-  
+
   goProfilePage(): void {
     this.router.navigate(['profile']);
-  }  
+  }
 
 }

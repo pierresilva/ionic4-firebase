@@ -17,35 +17,42 @@ export class CrudService {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userID = user.uid;
-        this.userProfile = this.db.collection("userProfile").doc(`${this.userID}`);        
-        this.userEvent = this.db.collection("userEvent");
+        this.userProfile = this.db.collection('userProfile').doc(`${this.userID}`);
+        this.userEvent = this.db.collection('userEvent');
       }
     });
   }
 
   getUserProfile(): firebase.firestore.DocumentReference {
-    if(!this.userID) return;
+    if (!this.userID) {
+      return;
+    }
     return this.userProfile;
   }
-  
+
   saveUserProfile(
-    fullName: string, 
+    fullName: string,
     gender: string,
     birthDate: Date,
-    skill: string[],
-    countryCode: string,
-    phoneNumber: string,
-    website: string, 
-    sharePhone: boolean,
-    shareWebsite: boolean): Promise<any> {
-    if(!this.userID) return;
-    return this.userProfile.update({ fullName, gender, birthDate, skill, countryCode, phoneNumber, website, sharePhone, shareWebsite });
-  }  
+    phoneNumber: string
+  ): Promise<any> {
+    if (!this.userID) {
+      return;
+    }
+    return this.userProfile.update({
+      fullName,
+      gender,
+      birthDate,
+      phoneNumber
+    });
+  }
 
   getUserEvent(): firebase.firestore.CollectionReference {
-    if(!this.userID) return;
+    if (!this.userID) {
+      return;
+    }
     return this.userEvent;
-  }  
+  }
 
   addUserEvent(
     eventName: string,
@@ -53,12 +60,19 @@ export class CrudService {
     eventDate: Date,
     eventDesc: string
   ): Promise<any> {
-    if(!this.userID) return;
-    return this.userEvent.add({ eventName, eventPrice, eventDate, eventDesc });
+    if (!this.userID) { return; }
+    return this.userEvent.add({
+      eventName,
+      eventPrice,
+      eventDate,
+      eventDesc
+    });
   }
 
   deleteUserEvent(id) {
-    if(!this.userID) return;
+    if (!this.userID) {
+      return;
+    }
     return this.userEvent.doc(id).delete();
   }
 

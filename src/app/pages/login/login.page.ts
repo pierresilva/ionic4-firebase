@@ -19,13 +19,12 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,    
+    private alertCtrl: AlertController,
     private authService: AuthService
-  ) 
-  {
+  ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])]
+      password: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(12), Validators.required])]
     });
   }
 
@@ -34,7 +33,7 @@ export class LoginPage implements OnInit {
 
   async ctrlLoading() {
     this.loading = await this.loadingCtrl.create({
-      message: 'Loading',
+      message: 'Cargando...',
       duration: 3000
     });
     return await this.loading.present();
@@ -42,8 +41,8 @@ export class LoginPage implements OnInit {
 
   async ctrlAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Login failed',
-      message: 'Check your email or password',
+      header: 'Algo salio mal!',
+      message: 'Revise su correo electrónico o clave.',
       buttons: ['OK']
     });
     await alert.present();
@@ -62,14 +61,14 @@ export class LoginPage implements OnInit {
             this.router.navigate(['tabs']);
           });
         },
-        error => {
-          this.loading.dismiss().then(() => {
-            this.ctrlAlert();
+          error => {
+            this.loading.dismiss().then(() => {
+              this.ctrlAlert();
+            });
           });
-      });
       this.ctrlLoading();
     }
-  }  
+  }
 
   goRegisterPage(): void {
     this.router.navigate(['register']);
@@ -77,6 +76,6 @@ export class LoginPage implements OnInit {
 
   goForgotPage(): void {
     this.router.navigate(['forgot']);
-  }  
+  }
 
 }

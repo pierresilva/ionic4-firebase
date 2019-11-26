@@ -5,7 +5,7 @@
         <ion-icon name="log-out" color="light"></ion-icon>
       </ion-button>
     </ion-buttons>       
-    <ion-title color="light" text-center>Profile</ion-title>
+    <ion-title color="light" text-center>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
     <ion-card-header color="secondary">
       <div *ngIf="userProfile?.fullName==null; then thenNameNull; else elseName"></div>
       <ng-template #thenNameNull>
-        <ion-card-title color="primary">Undefined</ion-card-title>
+        <ion-card-title color="primary"></ion-card-title>
       </ng-template>
       <ng-template #elseName>
         <ion-card-title color="primary">{{ userProfile?.fullName }}</ion-card-title>
@@ -27,19 +27,19 @@
     <ng-template [ngIf]="userProfile?.gender=='M'">
       <ion-item color="secondary">
         <ion-icon name="male" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Male</ion-label>
+        <ion-label color="light">Masculino</ion-label>
       </ion-item>
     </ng-template>
     <ng-template [ngIf]="userProfile?.gender=='F'">
       <ion-item color="secondary">
         <ion-icon name="female" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Female</ion-label>
+        <ion-label color="light">Femenino</ion-label>
       </ion-item> 
     </ng-template>
     <ng-template [ngIf]="userProfile?.gender==null">
       <ion-item color="secondary">
         <ion-icon name="contacts" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Undefined</ion-label>
+        <ion-label color="light"></ion-label>
       </ion-item> 
     </ng-template> 
 
@@ -48,7 +48,7 @@
     <ng-template #thenDateNull>
       <ion-item color="secondary">
         <ion-icon name="pulse" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Undefined</ion-label>
+        <ion-label color="light"></ion-label>
       </ion-item>
     </ng-template>
     <ng-template #elseDate>
@@ -58,27 +58,12 @@
       </ion-item>
     </ng-template>
 
-    <!-- Skill -->
-    <div *ngIf="userProfile?.skill==null; then thenSkillNull; else elseSkill"></div>
-    <ng-template #thenSkillNull>
-      <ion-item color="secondary">
-          <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
-          <ion-label color="light">Undefined</ion-label>
-      </ion-item>  
-    </ng-template>
-    <ng-template #elseSkill>
-      <ion-item color="secondary">
-        <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">{{ userProfile?.skill }}</ion-label>
-      </ion-item>  
-    </ng-template>
-
     <!-- Phone -->
     <div *ngIf="userProfile?.sharePhone==true; then thenPhone; else elsePhoneNull"></div>
     <ng-template #elsePhoneNull>
       <ion-item color="secondary">
         <ion-icon name="call" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Private</ion-label>
+        <ion-label color="light"></ion-label>
       </ion-item>  
     </ng-template>
     <ng-template #thenPhone>
@@ -87,28 +72,13 @@
         <ion-label color="light">{{ userProfile?.countryCode }} {{ userProfile?.phoneNumber }}</ion-label>
       </ion-item>  
     </ng-template>
-    
-    <!-- Website -->
-    <div *ngIf="userProfile?.shareWebsite==true; then thenWebsite; else elseWebsiteNull"></div>
-    <ng-template #elseWebsiteNull>
-      <ion-item color="secondary">
-        <ion-icon name="at" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">Private</ion-label>
-      </ion-item>   
-    </ng-template>
-    <ng-template #thenWebsite>
-      <ion-item color="secondary">
-        <ion-icon name="at" slot="start" color="primary"></ion-icon>
-        <ion-label color="light">{{ userProfile?.website }}</ion-label>
-      </ion-item>   
-    </ng-template>
   
   </ion-card>  
   <hr/>
   <hr/>
 
   <div class="">
-      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="goEdit()">EDIT PROFILE</ion-button>
+      <ion-button expand="block" fill="solid" size="small" color="secondary" (click)="goEdit()">EDITAR PERFIL</ion-button>
   </div>    
 
 </ion-content>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goTo('/tabs/reports')">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="goTo('/tabs/reports/edit/1')">
+        <ion-icon name="create" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-title color="light" class="ion-text-center">Reporte {{report?.data?.date | date:'shortDate'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen common-parallax [scrollEvents]="true">
+    <ion-card>
+      <!-- <img [src]="item.data.images[0]"> -->
+      <ion-list lines="none">
+        <ion-item color="secondary">
+          <ion-icon name="locate" slot="start" color="primary"></ion-icon>
+          <ion-label color="light">{{report?.data?.front}}</ion-label>
+        </ion-item>
+        <ion-item color="secondary">
+          <ion-icon name="list-box" slot="start" color="primary"></ion-icon>
+          <ion-label color="light">{{report?.data?.comment}}</ion-label>
+        </ion-item>
+
+      </ion-list>
+    </ion-card>
+    <hr>
+    <ng-container *ngIf="report?.data?.images?.length" >
+      <ion-card *ngFor="let item of report?.data?.images" >
+        <img [src]="item">
+      </ion-card>
+    </ng-container>
+</ion-content>

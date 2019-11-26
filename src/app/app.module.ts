@@ -10,23 +10,35 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FileSizeFormatPipe } from './pipes/file-size-format.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FileSizeFormatPipe],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    FormsModule,    
+    BrowserModule,
+    FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule  
-    ],
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+  ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFirestore,
+    FileSizeFormatPipe,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

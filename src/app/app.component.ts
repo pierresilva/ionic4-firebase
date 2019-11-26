@@ -27,12 +27,12 @@ export class AppComponent {
   ) {
     firebase.initializeApp(environment.firebase);
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
-      if(!user){
+      if (!user) {
         this.router.navigate(['login']);
       } else {
         this.router.navigate(['tabs']);
       }
-    });    
+    });
     this.initializeApp();
   }
 
@@ -41,7 +41,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      setTimeout(()=> {
+      setTimeout(() => {
         this.showSplash = false;
       }, 3000);
 
